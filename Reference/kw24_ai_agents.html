@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KW24 — AI Agents Section</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --black:#050506;--grid:#141416;--gold:#d4af37;--gold-d:#a8821a;
+  --white:#fff;--muted:rgba(255,255,255,.42);
+  --display:'Syne',sans-serif;--body:'DM Sans',sans-serif;--mono:'JetBrains Mono',monospace;
+  --green:#00d26a;--node:#16161a;--node-b:#26262c;
+}
+body{background:var(--black);color:var(--white);font-family:var(--body);overflow-x:hidden}
+
+.sec{min-height:100vh;display:grid;grid-template-columns:0.78fr 1.22fr;gap:48px;align-items:center;padding:90px 56px;position:relative;overflow:hidden}
+.sec::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:46px 46px;opacity:.5;-webkit-mask-image:radial-gradient(ellipse 90% 80% at 45% 50%,#000 35%,transparent 100%);mask-image:radial-gradient(ellipse 90% 80% at 45% 50%,#000 35%,transparent 100%);z-index:0}
+
+.left{position:relative;z-index:3}
+.badge{display:inline-flex;align-items:center;gap:8px;border:1px solid #222;padding:6px 14px;border-radius:100px;font-size:11px;color:var(--muted);letter-spacing:.5px;margin-bottom:26px}
+.badge i{width:6px;height:6px;background:var(--gold);border-radius:50%;animation:blink 1.4s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+h2{font-family:var(--display);font-size:clamp(32px,3.4vw,52px);font-weight:800;line-height:1.04;letter-spacing:-1.6px;margin-bottom:20px}
+h2 .g{color:var(--gold)}
+.sub{font-size:16px;font-weight:300;color:var(--muted);line-height:1.7;max-width:400px;margin-bottom:30px}
+
+.agent-pills{display:flex;flex-direction:column;gap:10px;margin-bottom:32px}
+.apill{display:flex;align-items:center;gap:12px;border:1px solid #1c1c20;background:#0b0b0d;border-radius:8px;padding:11px 14px}
+.apill .ico{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.apill .ico svg{width:16px;height:16px;stroke:#000;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.apill .meta{flex:1}
+.apill .nm{font-size:13px;font-weight:600;color:#fff}
+.apill .ts{font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:2px}
+.apill .stat{font-family:var(--mono);font-size:10px;color:var(--green);display:flex;align-items:center;gap:5px}
+.apill .stat .d{width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 1.1s infinite}
+
+.bp{display:inline-flex;align-items:center;gap:9px;background:var(--gold);color:#000;font-family:var(--display);font-size:13px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:14px 26px;border-radius:3px;text-decoration:none;transition:opacity .2s}
+.bp:hover{opacity:.85}
+
+.right{position:relative;z-index:3}
+.canvas{background:#0a0a0c;border:1px solid #1c1c20;border-radius:12px;overflow:hidden;box-shadow:0 40px 120px rgba(212,175,55,.08),0 20px 60px rgba(0,0,0,.6)}
+.cv-bar{display:flex;align-items:center;gap:10px;padding:11px 16px;border-bottom:1px solid #161619;background:#0d0d10}
+.cv-title{font-family:var(--mono);font-size:11px;color:#fff;display:flex;align-items:center;gap:8px}
+.cv-title .wf{width:18px;height:18px;border-radius:5px;background:#ea4b71;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:11px;font-family:var(--display)}
+.cv-tag{font-family:var(--mono);font-size:10px;color:var(--muted)}
+.cv-run{margin-left:auto;font-family:var(--mono);font-size:10px;color:var(--green);display:flex;align-items:center;gap:6px}
+.cv-run .d{width:7px;height:7px;border-radius:50%;background:var(--green);animation:blink 1.1s infinite}
+
+.cv-body{position:relative;width:100%;background-image:radial-gradient(circle,#1a1a1e 1px,transparent 1px);background-size:22px 22px;overflow:hidden}
+.stage{position:relative;width:600px;height:320px;margin:0 auto;transform-origin:top center}
+svg.flow{position:absolute;inset:0;width:600px;height:320px}
+.conn{fill:none;stroke:#2a2a30;stroke-width:2}
+.packet{fill:var(--gold);filter:drop-shadow(0 0 5px var(--gold))}
+
+.node{position:absolute;width:124px;height:70px;background:var(--node);border:1px solid var(--node-b);border-radius:9px;padding:9px 11px;transition:border-color .3s,box-shadow .3s;opacity:0;transform:translateY(10px)}
+.node.show{opacity:1;transform:translateY(0)}
+.node.active{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold),0 0 22px rgba(212,175,55,.18)}
+.node .nh{display:flex;align-items:center;gap:7px;margin-bottom:5px}
+.node .nic{width:20px;height:20px;border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--display);font-weight:800;font-size:10px;color:#fff}
+.node .nt{font-size:10px;font-weight:600;color:#fff;line-height:1.1}
+.node .nd{font-family:var(--mono);font-size:8.5px;color:var(--muted);line-height:1.3}
+.node .ncount{font-family:var(--mono);font-size:9px;color:var(--gold);margin-top:3px;font-weight:500}
+
+.cv-foot{display:flex;align-items:center;justify-content:space-between;padding:11px 16px;border-top:1px solid #161619;background:#0d0d10}
+.cv-foot .lf{font-family:var(--mono);font-size:10px;color:var(--muted)}
+.cv-foot .lc{font-family:var(--display);font-size:18px;font-weight:800;color:var(--gold)}
+.cv-foot .log{font-family:var(--mono);font-size:10px;color:var(--green);display:flex;align-items:center;gap:6px}
+
+.roasbadge{position:absolute;top:-18px;right:24px;z-index:6;background:#050506;border:1px solid var(--gold);border-radius:100px;padding:8px 16px;display:flex;align-items:center;gap:9px;box-shadow:0 0 30px rgba(212,175,55,.3)}
+.roasbadge .lbl{font-size:11px;color:var(--muted)}
+.roasbadge .v{font-family:var(--display);font-size:16px;font-weight:800;color:var(--gold)}
+
+@media(max-width:980px){ .sec{grid-template-columns:1fr;padding:70px 22px} }
+</style>
+</head>
+<body>
+
+<section class="sec">
+  <div class="left">
+    <div class="badge"><i></i> Agentic AI Workforce</div>
+    <h2>A Team of AI Agents That <span class="g">Never Sleep.</span></h2>
+    <p class="sub">While your competitors are offline, our agents are auditing SEO, qualifying leads, and pushing campaigns live — autonomously, 24/7, at machine speed.</p>
+
+    <div class="agent-pills">
+      <div class="apill">
+        <div class="ico" style="background:var(--gold)"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M11 8v6M8 11h6"/></svg></div>
+        <div class="meta"><div class="nm">SEO Agent</div><div class="ts" id="seo-task">Auditing 1,240 URLs…</div></div>
+        <div class="stat"><span class="d"></span>active</div>
+      </div>
+      <div class="apill">
+        <div class="ico" style="background:#5dcaa5"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="meta"><div class="nm">Lead Gen Agent</div><div class="ts" id="lead-task">Running n8n workflow…</div></div>
+        <div class="stat"><span class="d"></span>active</div>
+      </div>
+      <div class="apill">
+        <div class="ico" style="background:#85b7eb"><svg viewBox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <div class="meta"><div class="nm">Content Agent</div><div class="ts" id="content-task">Drafting 8 blog posts…</div></div>
+        <div class="stat"><span class="d"></span>active</div>
+      </div>
+    </div>
+
+    <a href="#" class="bp">Deploy Agents For Me
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+
+  <div class="right">
+    <div class="roasbadge"><span class="lbl">Pipeline</span><span class="v" id="pipeline">₹0</span></div>
+
+    <div class="canvas">
+      <div class="cv-bar">
+        <div class="cv-title"><span class="wf">n</span> Lead Generation Workflow</div>
+        <span class="cv-tag">· built by KW24</span>
+        <span class="cv-run"><span class="d"></span> Executing</span>
+      </div>
+
+      <div class="cv-body" id="cvbody">
+        <div class="stage" id="stage">
+          <svg class="flow" viewBox="0 0 600 320" id="flowsvg">
+            <path class="conn" id="p1" d="M140 77 C 180 77, 182 147, 218 147"/>
+            <path class="conn" id="p2" d="M342 147 C 360 147, 360 77, 372 77"/>
+            <path class="conn" id="p3" d="M496 77 C 520 77, 522 147, 538 147"/>
+            <path class="conn" id="p4" d="M538 182 C 538 250, 330 252, 264 252"/>
+            <circle class="packet" id="packet" r="4" cx="140" cy="77"/>
+          </svg>
+
+          <div class="node" id="n1" style="left:16px;top:44px">
+            <div class="nh"><div class="nic" style="background:#7f77dd">⏱</div><div class="nt">Schedule<br>Trigger</div></div>
+            <div class="nd">Every 1 hour</div>
+          </div>
+          <div class="node" id="n2" style="left:218px;top:114px">
+            <div class="nh"><div class="nic" style="background:#1d9e75">A</div><div class="nt">Apollo.io Search</div></div>
+            <div class="nd">People by domain</div>
+            <div class="ncount" id="c2">+0 leads</div>
+          </div>
+          <div class="node" id="n3" style="left:372px;top:44px">
+            <div class="nh"><div class="nic" style="background:var(--gold)">AI</div><div class="nt">AI Agent — ICP</div></div>
+            <div class="nd">Score &amp; filter</div>
+            <div class="ncount" id="c3">0 qualified</div>
+          </div>
+          <div class="node" id="n4" style="left:476px;top:114px">
+            <div class="nh"><div class="nic" style="background:#0f9d58">G</div><div class="nt">Google Sheets</div></div>
+            <div class="nd">Append rows</div>
+          </div>
+          <div class="node" id="n5" style="left:140px;top:220px">
+            <div class="nh"><div class="nic" style="background:#ea4335">✉</div><div class="nt">Send Cold Email</div></div>
+            <div class="nd">Personalised outreach</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cv-foot">
+        <span class="lf">Qualified leads today</span>
+        <span class="lc" id="leadcount">0</span>
+        <span class="log" id="footlog">▸ initialising…</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+function fitStage(){
+  const body=document.getElementById('cvbody'),stage=document.getElementById('stage');
+  const scale=Math.min(1, body.clientWidth/600);
+  stage.style.transform='scale('+scale+')';
+  body.style.height=(320*scale)+'px';
+}
+window.addEventListener('resize',fitStage); fitStage();
+
+['n1','n2','n3','n4','n5'].forEach((id,i)=>setTimeout(()=>document.getElementById(id).classList.add('show'),300+i*220));
+
+const paths=['p1','p2','p3','p4'].map(id=>document.getElementById(id));
+const packet=document.getElementById('packet');
+const lits=['n1','n2','n3','n4','n5'];
+const counts={leads:0,pipeline:0,qualified:0,apollo:0};
+
+function travel(seg){
+  if(seg>=paths.length){ tally(); setTimeout(()=>{resetLit();packetTo('p1');travel(0);},700); return; }
+  const path=paths[seg],len=path.getTotalLength(),dur=900;let start=null;
+  lightNode(seg);
+  function step(ts){ if(!start)start=ts; const t=Math.min((ts-start)/dur,1); const pt=path.getPointAtLength(t*len);
+    packet.setAttribute('cx',pt.x);packet.setAttribute('cy',pt.y);
+    if(t<1)requestAnimationFrame(step); else{lightNode(seg+1);travel(seg+1);} }
+  requestAnimationFrame(step);
+}
+function packetTo(pid){const p=document.getElementById(pid),pt=p.getPointAtLength(0);packet.setAttribute('cx',pt.x);packet.setAttribute('cy',pt.y);}
+function lightNode(i){if(lits[i])document.getElementById(lits[i]).classList.add('active');}
+function resetLit(){lits.forEach(id=>document.getElementById(id).classList.remove('active'));}
+
+const footlog=document.getElementById('footlog');
+function tally(){
+  counts.apollo+=Math.floor(Math.random()*15)+20;
+  const newQ=Math.floor(Math.random()*6)+5;
+  counts.qualified+=newQ;counts.leads+=newQ;counts.pipeline+=newQ*8500;
+  document.getElementById('c2').textContent='+'+counts.apollo+' leads';
+  document.getElementById('c3').textContent=counts.qualified+' qualified';
+  document.getElementById('leadcount').textContent=counts.leads;
+  document.getElementById('pipeline').textContent='₹'+(counts.pipeline/100000).toFixed(1)+'L';
+  footlog.textContent='▸ '+newQ+' new qualified leads added ✓';
+}
+
+const seoTasks=['Auditing 1,240 URLs…','Fixing 38 meta titles…','Building schema markup…','Closing 89 keyword gaps…'];
+const contentTasks=['Drafting 8 blog posts…','Optimising for AEO…','Generating 24 captions…','Internal linking…'];
+let si=0,ci=0;
+setInterval(()=>{si=(si+1)%seoTasks.length;document.getElementById('seo-task').textContent=seoTasks[si];},2600);
+setInterval(()=>{ci=(ci+1)%contentTasks.length;document.getElementById('content-task').textContent=contentTasks[ci];},3100);
+
+setTimeout(()=>{packetTo('p1');travel(0);},1400);
+</script>
+</body>
+</html>

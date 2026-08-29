@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KW24 — Meta Ads Section</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&family=Arimo:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --black:#050506;--grid:#141416;--gold:#d4af37;--gold-d:#a8821a;
+  --white:#fff;--muted:rgba(255,255,255,.42);
+  --display:'Syne',sans-serif;--body:'DM Sans',sans-serif;--ui:'Arimo',Arial,sans-serif;
+  --meta-blue:#1877f2;--green:#42b72a;
+}
+body{background:var(--black);color:var(--white);font-family:var(--body);overflow-x:hidden}
+
+.sec{min-height:100vh;display:grid;grid-template-columns:0.8fr 1.2fr;gap:48px;align-items:center;padding:90px 56px;position:relative;overflow:hidden}
+.sec::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:46px 46px;opacity:.5;-webkit-mask-image:radial-gradient(ellipse 90% 80% at 40% 50%,#000 35%,transparent 100%);mask-image:radial-gradient(ellipse 90% 80% at 40% 50%,#000 35%,transparent 100%);z-index:0}
+
+.left{position:relative;z-index:3}
+.badge{display:inline-flex;align-items:center;gap:8px;border:1px solid #222;padding:6px 14px;border-radius:100px;font-size:11px;color:var(--muted);letter-spacing:.5px;margin-bottom:26px}
+.badge i{width:6px;height:6px;background:var(--gold);border-radius:50%;animation:blink 1.4s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+h2{font-family:var(--display);font-size:clamp(32px,3.4vw,52px);font-weight:800;line-height:1.04;letter-spacing:-1.6px;margin-bottom:20px}
+h2 .g{color:var(--gold)}
+.sub{font-size:16px;font-weight:300;color:var(--muted);line-height:1.7;max-width:400px;margin-bottom:30px}
+.points{list-style:none;display:flex;flex-direction:column;gap:14px;margin-bottom:34px}
+.points li{display:flex;align-items:center;gap:12px;font-size:14px;color:rgba(255,255,255,.7)}
+.points .tick{width:20px;height:20px;border-radius:50%;background:rgba(212,175,55,.12);border:1px solid var(--gold);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
+.bp{display:inline-flex;align-items:center;gap:9px;background:var(--gold);color:#000;font-family:var(--display);font-size:13px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:14px 26px;border-radius:3px;text-decoration:none;transition:opacity .2s}
+.bp:hover{opacity:.85}
+
+/* dashboard screen */
+.right{position:relative;z-index:3}
+.screen{background:#f0f2f5;border-radius:12px;overflow:hidden;box-shadow:0 40px 120px rgba(212,175,55,.12),0 20px 60px rgba(0,0,0,.6)}
+.topbar{display:flex;align-items:center;gap:10px;padding:11px 16px;background:#fff;border-bottom:1px solid #dadde1}
+.metalogo{display:flex;align-items:center;gap:8px;font-family:var(--ui);font-weight:700;font-size:14px;color:#1c1e21}
+.metalogo .m{width:24px;height:24px;border-radius:6px;background:var(--meta-blue);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:14px}
+.topbar .tag{font-family:var(--ui);font-size:11px;color:#65676b;margin-left:4px}
+.live{margin-left:auto;display:flex;align-items:center;gap:6px;font-family:var(--ui);font-size:11px;color:#42b72a;font-weight:500}
+.live .ld{width:7px;height:7px;border-radius:50%;background:#42b72a;animation:blink 1.2s infinite}
+
+.dash-inner{padding:18px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+.kpi{background:#fff;border:1px solid #e4e6eb;border-radius:8px;padding:13px}
+.kpi .label{font-family:var(--ui);font-size:10px;color:#65676b;text-transform:uppercase;letter-spacing:.4px;margin-bottom:7px}
+.kpi .val{font-family:var(--display);font-size:24px;font-weight:800;color:#1c1e21;line-height:1}
+.kpi .delta{font-family:var(--ui);font-size:11px;font-weight:500;color:#42b72a;margin-top:5px;display:flex;align-items:center;gap:3px}
+
+/* chart */
+.chartcard{background:#fff;border:1px solid #e4e6eb;border-radius:8px;padding:15px 16px;margin-bottom:16px}
+.chartcard .ch-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.chartcard .ch-title{font-family:var(--ui);font-size:12px;font-weight:700;color:#1c1e21}
+.chartcard .ch-legend{display:flex;gap:14px;font-family:var(--ui);font-size:10px;color:#65676b}
+.chartcard .ch-legend span{display:flex;align-items:center;gap:5px}
+.dot8{width:8px;height:8px;border-radius:2px}
+svg.chart{width:100%;height:120px;display:block;overflow:visible}
+.gridline{stroke:#eef0f2;stroke-width:1}
+.area{fill:url(#goldgrad)}
+.line{fill:none;stroke:var(--gold-d);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:1000;stroke-dashoffset:1000;animation:draw 2.4s ease forwards .4s}
+.line2{fill:none;stroke:var(--meta-blue);stroke-width:2;stroke-linecap:round;opacity:.55;stroke-dasharray:1000;stroke-dashoffset:1000;animation:draw 2.4s ease forwards .7s}
+@keyframes draw{to{stroke-dashoffset:0}}
+.dotpt{fill:var(--gold-d);opacity:0;animation:popdot .3s ease forwards}
+
+/* product ads */
+.ads-label{font-family:var(--ui);font-size:11px;color:#65676b;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
+.adrow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.adcard{background:#fff;border:1px solid #e4e6eb;border-radius:8px;overflow:hidden;opacity:0;transform:translateY(14px)}
+.adcard .ad-top{display:flex;align-items:center;gap:7px;padding:8px 9px}
+.adcard .ad-av{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--ui);font-weight:700;font-size:10px;color:#fff}
+.adcard .ad-brand{font-family:var(--ui);font-size:11px;font-weight:700;color:#1c1e21;line-height:1.1}
+.adcard .ad-spon{font-family:var(--ui);font-size:9px;color:#65676b}
+.adcard .ad-img{height:78px;position:relative;display:flex;align-items:center;justify-content:center}
+.adcard .ad-img .prod{font-family:var(--display);font-weight:800;font-size:13px;color:rgba(255,255,255,.95);text-align:center;padding:0 8px;z-index:1}
+.adcard .ad-cta{display:flex;align-items:center;justify-content:space-between;padding:8px 9px;background:#f7f8fa;border-top:1px solid #e4e6eb}
+.adcard .ad-cta .txt{font-family:var(--ui);font-size:10px;color:#1c1e21;font-weight:500}
+.adcard .ad-cta .btn{font-family:var(--ui);font-size:9px;font-weight:700;color:#fff;background:var(--meta-blue);padding:4px 8px;border-radius:4px}
+.adcard .ad-stats{display:flex;gap:10px;padding:7px 9px;font-family:var(--ui);font-size:9px;color:#65676b}
+.adcard .ad-stats b{color:#42b72a}
+
+/* floating roas badge */
+.roasbadge{position:absolute;top:-18px;right:24px;z-index:6;background:#050506;border:1px solid var(--gold);border-radius:100px;padding:8px 18px;display:flex;align-items:center;gap:10px;box-shadow:0 0 30px rgba(212,175,55,.3)}
+.roasbadge .lbl{font-size:11px;color:var(--muted)}
+.roasbadge .v{font-family:var(--display);font-size:18px;font-weight:800;color:var(--gold);min-width:46px;text-align:center}
+.roasbadge .ar{color:#42b72a;font-size:13px}
+
+@media(max-width:980px){
+  .sec{grid-template-columns:1fr;padding:70px 22px}
+  .kpis{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<section class="sec">
+  <div class="left">
+    <div class="badge"><i></i> Performance Marketing</div>
+    <h2>We Turn Ad Spend Into <span class="g">Predictable Revenue.</span></h2>
+    <p class="sub">Our AI watches every campaign in real time — pausing losers, scaling winners, and rewriting creative until the numbers climb. You just watch the ROAS go up.</p>
+    <ul class="points">
+      <li><span class="tick">✓</span> Live bid &amp; budget optimisation across Meta &amp; Google</li>
+      <li><span class="tick">✓</span> AI-generated creative variations tested daily</li>
+      <li><span class="tick">✓</span> Full-funnel tracking from click to conversion</li>
+    </ul>
+    <a href="#" class="bp">See Our Ad Results
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+
+  <div class="right">
+    <div class="roasbadge">
+      <span class="lbl">ROAS</span>
+      <span class="v" id="roas">0.0×</span>
+      <span class="ar">↑</span>
+    </div>
+
+    <div class="screen">
+      <div class="topbar">
+        <div class="metalogo"><span class="m">M</span> Ads Manager</div>
+        <span class="tag">· Knowledge World24 — Client Campaign</span>
+        <span class="live"><span class="ld"></span> LIVE</span>
+      </div>
+
+      <div class="dash-inner">
+        <div class="kpis">
+          <div class="kpi">
+            <div class="label">Amount Spent</div>
+            <div class="val" id="spend">₹0</div>
+            <div class="delta">↑ optimised</div>
+          </div>
+          <div class="kpi">
+            <div class="label">Conversions</div>
+            <div class="val" id="conv">0</div>
+            <div class="delta" id="conv-d">↑ 0%</div>
+          </div>
+          <div class="kpi">
+            <div class="label">Revenue</div>
+            <div class="val" id="rev">₹0</div>
+            <div class="delta">↑ live</div>
+          </div>
+          <div class="kpi">
+            <div class="label">Cost / Result</div>
+            <div class="val" id="cpa">₹0</div>
+            <div class="delta" id="cpa-d">↓ improving</div>
+          </div>
+        </div>
+
+        <div class="chartcard">
+          <div class="ch-head">
+            <div class="ch-title">Conversions — Last 14 Days</div>
+            <div class="ch-legend">
+              <span><span class="dot8" style="background:var(--gold-d)"></span> This campaign</span>
+              <span><span class="dot8" style="background:var(--meta-blue);opacity:.55"></span> Previous</span>
+            </div>
+          </div>
+          <svg class="chart" viewBox="0 0 460 120" preserveAspectRatio="none" id="chartSvg">
+            <defs>
+              <linearGradient id="goldgrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#d4af37" stop-opacity="0.22"/>
+                <stop offset="100%" stop-color="#d4af37" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <line class="gridline" x1="0" y1="30" x2="460" y2="30"/>
+            <line class="gridline" x1="0" y1="60" x2="460" y2="60"/>
+            <line class="gridline" x1="0" y1="90" x2="460" y2="90"/>
+            <polygon class="area" id="area" points=""/>
+            <polyline class="line2" id="line2" points=""/>
+            <polyline class="line" id="line1" points=""/>
+          </svg>
+        </div>
+
+        <div class="ads-label">Top Performing Creatives</div>
+        <div class="adrow" id="adrow"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+// ---- count-up KPIs ----
+function animateVal(id, target, fmt, dur=1800, delay=0){
+  setTimeout(()=>{
+    const el=document.getElementById(id); let cur=0; const steps=70; const inc=target/steps;
+    const t=setInterval(()=>{ cur=Math.min(cur+inc,target); el.textContent=fmt(cur); if(cur>=target)clearInterval(t); }, dur/steps);
+  }, delay);
+}
+const inr = n => '₹'+Math.round(n).toLocaleString('en-IN');
+animateVal('spend', 184000, inr, 1800, 400);
+animateVal('conv', 1247, n=>Math.round(n).toLocaleString('en-IN'), 1800, 500);
+animateVal('rev', 1067000, inr, 2000, 600);
+animateVal('cpa', 148, inr, 1600, 500);
+
+setTimeout(()=>{ // roas
+  const el=document.getElementById('roas'); let r=0; const t=setInterval(()=>{ r=Math.min(r+5.8/80,5.8); el.textContent=r.toFixed(1)+'×'; if(r>=5.8)clearInterval(t); },22);
+},700);
+setTimeout(()=>{ document.getElementById('conv-d').textContent='↑ 312%'; },2300);
+setTimeout(()=>{ document.getElementById('cpa-d').textContent='↓ 41% cheaper'; },2100);
+
+// ---- chart paths ----
+const W=460,H=120;
+const cur=[58,52,49,53,44,40,42,35,30,28,22,18,14,9];   // lower y = higher conversions (trending up)
+const prev=[70,72,69,71,73,70,74,72,75,73,76,74,77,75];
+function pts(arr){ return arr.map((y,i)=> (i*(W/(arr.length-1)))+','+y ).join(' '); }
+document.getElementById('line1').setAttribute('points', pts(cur));
+document.getElementById('line2').setAttribute('points', pts(prev));
+document.getElementById('area').setAttribute('points', '0,'+H+' '+pts(cur)+' '+W+','+H);
+
+// ---- product ad creatives ----
+const ads=[
+  {brand:"GlowSkin", av:"#e1306c", avt:"G", img:"#d4537e", prod:"Vitamin C Serum — 40% Off Today", cta:"Shop Now", roas:"6.2×", ctr:"4.8%"},
+  {brand:"FitGear", av:"#1c1e21", avt:"F", img:"#2c3e50", prod:"Smart Resistance Bands Set", cta:"Buy Now", roas:"5.1×", ctr:"3.9%"},
+  {brand:"BrewCo", av:"#8a6d10", avt:"B", img:"#a8821a", prod:"Cold Brew Maker — Free Shipping", cta:"Order", roas:"7.4×", ctr:"5.6%"},
+];
+const adrow=document.getElementById('adrow');
+ads.forEach((a,i)=>{
+  const c=document.createElement('div'); c.className='adcard';
+  c.innerHTML=`
+    <div class="ad-top">
+      <div class="ad-av" style="background:${a.av}">${a.avt}</div>
+      <div><div class="ad-brand">${a.brand}</div><div class="ad-spon">Sponsored · @${a.brand.toLowerCase()}</div></div>
+    </div>
+    <div class="ad-img" style="background:${a.img}"><div class="prod">${a.prod}</div></div>
+    <div class="ad-cta"><span class="txt">${a.brand.toLowerCase()}.com</span><span class="btn">${a.cta}</span></div>
+    <div class="ad-stats"><span>ROAS <b>${a.roas}</b></span><span>CTR <b>${a.ctr}</b></span></div>`;
+  adrow.appendChild(c);
+  setTimeout(()=>{ c.style.transition='opacity .5s ease, transform .5s ease'; c.style.opacity='1'; c.style.transform='translateY(0)'; }, 900+i*180);
+});
+</script>
+</body>
+</html>

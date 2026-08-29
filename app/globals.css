@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+:root {
+  --black: #050506;
+  --gold: #d4af37;
+  --gold-d: #a8821a;
+  --white: #fff;
+  --ease: cubic-bezier(.6, .01, .05, .95);
+  --display: var(--font-display, 'Playfair Display', serif);
+  --body: var(--font-dm-sans, 'DM Sans', sans-serif);
+  --serp: var(--font-arimo, 'Arimo', Arial, sans-serif);
+  --ui: var(--font-arimo, 'Arimo', Arial, sans-serif);
+  --mono: var(--font-jetbrains, 'JetBrains Mono', monospace);
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+body {
+  background: #050506;
+  color: #fff;
+  font-family: var(--body);
+  overflow-x: hidden;
+  max-width: 100%;
+  cursor: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+input, textarea, select {
+  cursor: auto;
+}
+
+@media (hover: none) {
+  body { cursor: auto; }
+  .custom-cursor { display: none !important; }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--display);
+}
+
+.font-syne {
+  font-family: var(--display);
+}
+
+.font-dm-sans {
+  font-family: var(--body);
+}

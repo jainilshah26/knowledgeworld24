@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KW24 — Contact Section</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --black:#050506;--grid:#141416;--gold:#d4af37;
+  --white:#fff;--muted:rgba(255,255,255,.45);
+  --display:'Syne',sans-serif;--body:'DM Sans',sans-serif;--mono:'JetBrains Mono',monospace;
+  --card:#0b0b0d;--card-b:#1c1c20;--ease:cubic-bezier(.6,.01,.05,.95);
+}
+body{background:var(--black);color:var(--white);font-family:var(--body);overflow-x:hidden}
+
+.sec{position:relative;padding:120px 56px;overflow:hidden}
+.sec::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:46px 46px;opacity:.4;-webkit-mask-image:radial-gradient(ellipse 60% 70% at 50% 50%,#000 30%,transparent 100%);mask-image:radial-gradient(ellipse 60% 70% at 50% 50%,#000 30%,transparent 100%);z-index:0}
+.glow{position:absolute;width:700px;height:400px;left:50%;top:50%;transform:translate(-50%,-50%);background:radial-gradient(ellipse,rgba(212,175,55,.06) 0%,transparent 70%);z-index:0;pointer-events:none}
+
+.wrap{position:relative;z-index:2;max-width:520px;margin:0 auto;text-align:center}
+.badge{display:inline-flex;align-items:center;gap:8px;border:1px solid #222;padding:6px 14px;border-radius:100px;font-size:11px;color:var(--muted);letter-spacing:.5px;margin-bottom:22px;opacity:0;transform:translateY(16px);transition:all .6s var(--ease)}
+.badge.vis{opacity:1;transform:translateY(0)}
+.badge i{width:6px;height:6px;background:var(--gold);border-radius:50%;animation:blink 1.4s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+h2{font-family:var(--display);font-size:clamp(30px,4vw,48px);font-weight:800;letter-spacing:-1.5px;line-height:1.08;margin-bottom:14px;opacity:0;transform:translateY(20px);transition:all .7s var(--ease) .08s}
+h2.vis{opacity:1;transform:translateY(0)}
+h2 .g{color:var(--gold)}
+.subtext{font-size:15px;font-weight:300;color:var(--muted);line-height:1.7;margin-bottom:44px;opacity:0;transform:translateY(20px);transition:all .7s var(--ease) .16s}
+.subtext.vis{opacity:1;transform:translateY(0)}
+
+form{display:flex;flex-direction:column;gap:12px;text-align:left;opacity:0;transform:translateY(20px);transition:all .7s var(--ease) .24s}
+form.vis{opacity:1;transform:translateY(0)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+input,textarea{width:100%;background:var(--card);border:1px solid var(--card-b);color:#fff;font-family:var(--body);font-size:14px;font-weight:300;padding:14px 16px;border-radius:6px;outline:none;transition:border-color .25s,box-shadow .25s}
+input::placeholder,textarea::placeholder{color:rgba(255,255,255,.25)}
+input:focus,textarea:focus{border-color:rgba(212,175,55,.55);box-shadow:0 0 0 3px rgba(212,175,55,.08)}
+textarea{resize:none;height:110px;line-height:1.6;font-family:var(--body)}
+
+.submit{margin-top:6px;background:var(--gold);color:#000;font-family:var(--display);font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:16px;border:none;border-radius:6px;cursor:pointer;transition:box-shadow .3s}
+.submit:hover{box-shadow:0 0 40px rgba(212,175,55,.4)}
+
+.links{display:flex;justify-content:center;gap:28px;margin-top:36px;flex-wrap:wrap;opacity:0;transform:translateY(16px);transition:all .7s var(--ease) .32s}
+.links.vis{opacity:1;transform:translateY(0)}
+.links a{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--muted);text-decoration:none;transition:color .2s}
+.links a:hover{color:var(--gold)}
+.links svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round}
+
+@media(max-width:600px){.sec{padding:80px 22px}.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<section class="sec">
+  <div class="glow"></div>
+  <div class="wrap">
+    <div class="badge" id="b0"><i></i> Let's Talk</div>
+    <h2 id="h0">Ready to <span class="g">Scale?</span></h2>
+    <p class="subtext" id="s0">Tell us about your business — we'll come back with a plan that actually moves the needle.</p>
+
+    <form id="f0" onsubmit="return false;">
+      <div class="row">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Email Address" required>
+      </div>
+      <input type="text" placeholder="Company / Brand Name">
+      <textarea placeholder="Tell us about your goals..."></textarea>
+      <button type="submit" class="submit">Send Message →</button>
+    </form>
+
+    <div class="links" id="l0">
+      <a href="mailto:hello@knowledgeworld24.com">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        hello@knowledgeworld24.com
+      </a>
+      <a href="#">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        GIFT City, Gandhinagar
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');});},{threshold:.2});
+['b0','h0','s0','f0','l0'].forEach(id=>obs.observe(document.getElementById(id)));
+</script>
+</body>
+</html>
