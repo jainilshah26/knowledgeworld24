@@ -1,11 +1,16 @@
 'use client'
 
+import Image from 'next/image'
+
 export default function Footer() {
   return (
     <footer className="kw24-footer">
       <div className="top">
         <div className="brand">
-          <div className="logo">Knowledge<span>World24</span></div>
+          <div className="logo">
+            <Image src="/logo.png" alt="Knowledge World24" width={30} height={30} />
+            Knowledge<span>World24</span>
+          </div>
           <p>An AI-first digital marketing agency in Ahmedabad, deploying agents that run SEO, ads, and content 24/7 — so you scale while you sleep.</p>
           {/* TODO: swap in real social profile URLs */}
           <div className="socials">
@@ -64,7 +69,8 @@ export default function Footer() {
 
         .kw24-footer .top { position: relative; z-index: 2; max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.1fr; gap: 40px; padding-bottom: 48px; border-bottom: 1px solid #1c1c20; }
 
-        .kw24-footer .brand .logo { font-family: var(--display); font-weight: 800; font-size: 18px; letter-spacing: -.3px; margin-bottom: 14px; }
+        .kw24-footer .brand .logo { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 800; font-size: 18px; letter-spacing: -.3px; margin-bottom: 14px; }
+        .kw24-footer .brand .logo :global(img) { border-radius: 50%; }
         .kw24-footer .brand .logo span { color: var(--gold); }
         .kw24-footer .brand p { font-size: 13.5px; color: rgba(255,255,255,.4); line-height: 1.7; max-width: 260px; margin-bottom: 20px; font-weight: 300; }
         .kw24-footer .socials { display: flex; gap: 10px; }

@@ -8,13 +8,17 @@
  */
 
 import { useState } from 'react'
+import Image from 'next/image'
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
 
   return (
     <nav className="kw24-nav">
-      <div className="logo">Knowledge<span>World24</span></div>
+      <a href="/" className="logo">
+        <Image src="/logo.png" alt="Knowledge World24" width={34} height={34} priority />
+        Knowledge<span>World24</span>
+      </a>
       <ul className="nav-links">
         <li><a href="#services">Services</a></li>
         <li><a href="#ai-automation">AI Automation</a></li>
@@ -62,11 +66,19 @@ export default function Navbar() {
         }
         @keyframes navIn { to { transform: translateY(0); } }
         .logo {
+          display: flex;
+          align-items: center;
+          gap: 10px;
           font-family: var(--display);
           font-weight: 800;
           font-size: 16px;
           letter-spacing: -.3px;
           white-space: nowrap;
+          text-decoration: none;
+          color: #fff;
+        }
+        .logo :global(img) {
+          border-radius: 50%;
         }
         .logo span { color: var(--gold); }
         .nav-links {
