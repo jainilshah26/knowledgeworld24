@@ -1,7 +1,10 @@
 import type { Metadata, Viewport } from 'next'
+import Script from 'next/script'
 import { Playfair_Display, DM_Sans, JetBrains_Mono, Arimo } from 'next/font/google'
 import './globals.css'
 import StyledJsxRegistry from './registry'
+
+const GA_MEASUREMENT_ID = 'G-00HBKQRYK5'
 
 const SITE_URL = 'https://knowledgeworld24.com'
 const SITE_NAME = 'Knowledge World24'
@@ -123,6 +126,18 @@ export default function RootLayout({
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
         <StyledJsxRegistry>{children}</StyledJsxRegistry>
       </body>
     </html>
