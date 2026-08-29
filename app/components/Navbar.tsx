@@ -16,12 +16,12 @@ export default function Navbar() {
     <nav className="kw24-nav">
       <div className="logo">Knowledge<span>World24</span></div>
       <ul className="nav-links">
-        <li><a href="#">Services</a></li>
-        <li><a href="#">Work</a></li>
-        <li><a href="#">Blog</a></li>
-        <li><a href="#">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#ai-automation">AI Automation</a></li>
+        <li><a href="#performance-marketing">Ads</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
-      <a href="#" className="nav-btn" data-magnet>Free Audit</a>
+      <a href="#contact" className="nav-btn" data-magnet>Free Audit</a>
 
       <button
         type="button"
@@ -35,11 +35,11 @@ export default function Navbar() {
 
       <div className={`overlay${open ? ' open' : ''}`} onClick={() => setOpen(false)} />
       <div className={`mobile-menu${open ? ' open' : ''}`}>
-        <a href="#" onClick={() => setOpen(false)}>Services</a>
-        <a href="#" onClick={() => setOpen(false)}>Work</a>
-        <a href="#" onClick={() => setOpen(false)}>Blog</a>
-        <a href="#" onClick={() => setOpen(false)}>About</a>
-        <a href="#" className="nav-btn" onClick={() => setOpen(false)}>Free Audit</a>
+        <a href="#services" onClick={() => setOpen(false)}>Services</a>
+        <a href="#ai-automation" onClick={() => setOpen(false)}>AI Automation</a>
+        <a href="#performance-marketing" onClick={() => setOpen(false)}>Ads</a>
+        <a href="#contact" onClick={() => setOpen(false)}>Contact</a>
+        <a href="#contact" className="nav-btn" onClick={() => setOpen(false)}>Free Audit</a>
       </div>
 
       <style jsx>{`

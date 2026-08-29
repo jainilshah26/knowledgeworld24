@@ -122,7 +122,7 @@ export default function AiAgents() {
   }, [])
 
   return (
-    <section className="kw24-ai-agents sec">
+    <section id="ai-automation" className="kw24-ai-agents sec">
       <div className="ai-inner">
       <div className="left">
         <div className="badge"><i></i> Agentic AI Workforce</div>

@@ -53,7 +53,7 @@ export default function Contact() {
   }
 
   return (
-    <section className="kw24-contact sec" ref={sectionRef}>
+    <section id="contact" className="kw24-contact sec" ref={sectionRef}>
       <div className="glow"></div>
       <div className="wrap">
         <div className="badge" ref={badgeRef}><i></i> Let&apos;s Talk</div>

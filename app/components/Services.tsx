@@ -244,6 +244,7 @@ export default function Services() {
 
   return (
     <section
+      id="services"
       className="sec"
       style={{
         ['--grid' as string]: '#141416',

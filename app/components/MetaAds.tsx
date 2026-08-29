@@ -133,7 +133,7 @@ export default function MetaAds() {
   }, [])
 
   return (
-    <section className="kw24-meta-ads sec">
+    <section id="performance-marketing" className="kw24-meta-ads sec">
       <div className="meta-inner">
       <div className="left">
         <div className="badge"><i></i> Performance Marketing</div>

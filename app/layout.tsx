@@ -1,7 +1,13 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Playfair_Display, DM_Sans, JetBrains_Mono, Arimo } from 'next/font/google'
 import './globals.css'
 import StyledJsxRegistry from './registry'
+
+const SITE_URL = 'https://knowledgeworld24.com'
+const SITE_NAME = 'Knowledge World24'
+const SITE_TITLE = 'Knowledge World24 — AI-First Digital Marketing Agency in Ahmedabad'
+const SITE_DESCRIPTION =
+  'AI-first digital marketing agency in Ahmedabad crafting SEO, AI automation, and performance marketing campaigns that adapt, learn, and deliver 5x ROI.'
 
 const playfair = Playfair_Display({
   variable: '--font-display',
@@ -29,9 +35,81 @@ const arimo = Arimo({
 })
 
 export const metadata: Metadata = {
-  title: 'Knowledge World 24 — AI-First Digital Marketing Agency',
-  description:
-    'We build marketing that thinks. AI-first digital marketing agency in Ahmedabad crafting campaigns that adapt, learn, and deliver 5x ROI.',
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: SITE_TITLE,
+    template: '%s | Knowledge World24',
+  },
+  description: SITE_DESCRIPTION,
+  keywords: [
+    'digital marketing agency Ahmedabad',
+    'AI marketing agency India',
+    'SEO agency Ahmedabad',
+    'AI automation agency',
+    'performance marketing agency',
+    'Knowledge World24',
+  ],
+  authors: [{ name: SITE_NAME, url: SITE_URL }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
+  category: 'Marketing',
+  alternates: {
+    canonical: '/',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
+  },
+  openGraph: {
+    type: 'website',
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    locale: 'en_IN',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+  },
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#050506',
+  colorScheme: 'dark',
+}
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'MarketingAgency',
+  name: SITE_NAME,
+  url: SITE_URL,
+  logo: `${SITE_URL}/logo.png`,
+  image: `${SITE_URL}/logo.png`,
+  description: SITE_DESCRIPTION,
+  email: 'hello@knowledgeworld24.com',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Gandhinagar',
+    addressRegion: 'Gujarat',
+    addressCountry: 'IN',
+    // TODO: add streetAddress / postalCode once confirmed
+    streetAddress: 'GIFT City',
+  },
+  areaServed: 'IN',
+  sameAs: [
+    // TODO: add real social profile URLs (LinkedIn, Instagram, X, YouTube)
+  ],
 }
 
 export default function RootLayout({
@@ -40,6 +118,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${dmSans.variable} ${jetbrainsMono.variable} ${arimo.variable}`}>
       <body>
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <StyledJsxRegistry>{children}</StyledJsxRegistry>
       </body>
     </html>

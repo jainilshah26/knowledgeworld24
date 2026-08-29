@@ -7,6 +7,7 @@ export default function Footer() {
         <div className="brand">
           <div className="logo">Knowledge<span>World24</span></div>
           <p>An AI-first digital marketing agency in Ahmedabad, deploying agents that run SEO, ads, and content 24/7 — so you scale while you sleep.</p>
+          {/* TODO: swap in real social profile URLs */}
           <div className="socials">
             <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></svg></a>
             <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="1" /></svg></a>
@@ -18,23 +19,24 @@ export default function Footer() {
         <div className="col">
           <h4>Services</h4>
           <ul>
-            <li><a href="#">SEO &amp; AI Search</a></li>
-            <li><a href="#">AI Automation</a></li>
-            <li><a href="#">Performance Marketing</a></li>
-            <li><a href="#">Social Media</a></li>
-            <li><a href="#">Content Marketing</a></li>
-            <li><a href="#">Video Production</a></li>
+            <li><a href="#services">SEO &amp; AI Search</a></li>
+            <li><a href="#ai-automation">AI Automation</a></li>
+            <li><a href="#performance-marketing">Performance Marketing</a></li>
+            <li><a href="#services">Social Media</a></li>
+            <li><a href="#services">Content Marketing</a></li>
+            <li><a href="#services">Video Production</a></li>
           </ul>
         </div>
 
         <div className="col">
           <h4>Company</h4>
           <ul>
+            {/* TODO: point these at real /about, /work, /blog, /careers routes once built */}
             <li><a href="#">About Us</a></li>
             <li><a href="#">Our Work</a></li>
             <li><a href="#">Blog</a></li>
             <li><a href="#">Careers</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="#contact">Contact</a></li>
           </ul>
         </div>
 
