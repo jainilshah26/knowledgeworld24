@@ -94,7 +94,8 @@ export default function Services() {
     const jsxScope = [...dotsEl.classList].find(c => c.startsWith('jsx-'))
 
     const originalCards = [...track.children] as HTMLElement[]
-    const cardW = 340 + 20
+    const trackGap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap || '0') || 0
+    let cardW = originalCards[0].getBoundingClientRect().width + trackGap
     let index = 0
     const realCount = originalCards.length
 
@@ -212,6 +213,15 @@ export default function Services() {
     wrap.addEventListener('touchmove', onTouchMove, { passive: true })
     wrap.addEventListener('touchend', onTouchEnd)
 
+    // recompute card pitch on resize/orientation change so translateX always
+    // matches the real (breakpoint-dependent) card width instead of drifting
+    const onResize = () => {
+      const gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap || '0') || 0
+      cardW = originalCards[0].getBoundingClientRect().width + gap
+      go(index, true)
+    }
+    window.addEventListener('resize', onResize)
+
     go(0, true)
     startAuto()
 
@@ -233,6 +243,7 @@ export default function Services() {
       wrap.removeEventListener('touchstart', onTouchStart)
       wrap.removeEventListener('touchmove', onTouchMove)
       wrap.removeEventListener('touchend', onTouchEnd)
+      window.removeEventListener('resize', onResize)
 
       dotEls.forEach((d, i) => d.removeEventListener('click', dotClickHandlers[i]))
       dotsEl.innerHTML = ''

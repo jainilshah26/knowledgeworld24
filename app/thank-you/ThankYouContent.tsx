@@ -18,7 +18,7 @@ export default function ThankYouContent() {
       </div>
 
       <style jsx global>{`
-        .kw24-thank-you.sec { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; padding: 24px; }
+        .kw24-thank-you.sec { min-height: 100vh; min-height: 100svh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; padding: 24px; }
         .kw24-thank-you.sec::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(#e8e2d2 1px, transparent 1px), linear-gradient(90deg, #e8e2d2 1px, transparent 1px); background-size: 46px 46px; opacity: .4; -webkit-mask-image: radial-gradient(ellipse 55% 60% at 50% 50%, #000 30%, transparent 100%); mask-image: radial-gradient(ellipse 55% 60% at 50% 50%, #000 30%, transparent 100%); }
         .kw24-thank-you .glow { position: absolute; width: 600px; height: 400px; left: 50%; top: 50%; transform: translate(-50%,-50%); background: radial-gradient(ellipse, rgba(184,145,43,.09) 0%, transparent 70%); pointer-events: none; }
 
