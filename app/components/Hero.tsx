@@ -242,7 +242,7 @@ export default function Hero() {
         #cur2 { position: fixed; width: 30px; height: 30px; border: 1px solid rgba(184,145,43,.4); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: left .12s ease-out, top .12s ease-out, width .25s, height .25s, border-color .25s; }
         @media (hover: none) { #cur, #cur2 { display: none; } }
 
-        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 120px 56px 70px; position: relative; overflow: hidden; perspective: 1600px; }
+        .hero { min-height: 100vh; min-height: 100svh; display: flex; align-items: center; justify-content: center; padding: 120px 56px 70px; position: relative; overflow: hidden; perspective: 1600px; }
         .hero-inner { position: relative; z-index: 3; width: 100%; max-width: 1280px; margin: 0 auto; display: flex; justify-content: center; }
         #bg3d { position: absolute; inset: 0; z-index: 0; display: block; }
         .hero::after { content: ''; position: absolute; inset: 0; z-index: 1; background: radial-gradient(ellipse 65% 60% at 50% 45%, transparent 40%, rgba(247,243,234,.62) 100%); pointer-events: none; }

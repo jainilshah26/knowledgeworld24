@@ -207,7 +207,7 @@ export default function AiAgents() {
       </div>
 
       <style jsx global>{`
-        .kw24-ai-agents.sec { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 90px 56px; position: relative; overflow: hidden; --green: #00d26a; --node: #121a15; --node-b: #26262c; }
+        .kw24-ai-agents.sec { min-height: 100vh; min-height: 100svh; display: flex; align-items: center; justify-content: center; padding: 90px 56px; position: relative; overflow: hidden; --green: #00d26a; --node: #121a15; --node-b: #26262c; }
         .kw24-ai-agents .ai-inner { position: relative; z-index: 3; width: 100%; max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 0.78fr 1.22fr; gap: 48px; align-items: center; }
         .kw24-ai-agents.sec::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(#e8e2d2 1px, transparent 1px), linear-gradient(90deg, #e8e2d2 1px, transparent 1px); background-size: 46px 46px; opacity: .5; -webkit-mask-image: radial-gradient(ellipse 90% 80% at 45% 50%, #000 35%, transparent 100%); mask-image: radial-gradient(ellipse 90% 80% at 45% 50%, #000 35%, transparent 100%); z-index: 0; }
 
