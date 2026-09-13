@@ -26,7 +26,7 @@ export default function Navbar() {
           <li><a href="#performance-marketing">Ads</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
-        <a href="#contact" className="nav-btn" data-magnet>Free Audit</a>
+        <a href="/free-audit" className="nav-btn" data-magnet>Free Audit</a>
 
         <button
           type="button"
@@ -45,7 +45,7 @@ export default function Navbar() {
         <a href="#ai-automation" onClick={() => setOpen(false)}>AI Automation</a>
         <a href="#performance-marketing" onClick={() => setOpen(false)}>Ads</a>
         <a href="#contact" onClick={() => setOpen(false)}>Contact</a>
-        <a href="#contact" className="nav-btn" onClick={() => setOpen(false)}>Free Audit</a>
+        <a href="/free-audit" className="nav-btn" onClick={() => setOpen(false)}>Free Audit</a>
       </div>
 
       <style jsx>{`
