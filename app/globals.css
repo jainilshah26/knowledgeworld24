@@ -1,13 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --black: #050506;
-  --gold: #d4af37;
-  --gold-d: #a8821a;
-  --white: #fff;
+  --bg: #f7f3ea;
+  --ink: #1a1712;
+  --card: #ffffff;
+  --card-b: #e4dcc8;
+  --accent: #b8912b;
+  --accent-d: #8a6a1e;
   --ease: cubic-bezier(.6, .01, .05, .95);
-  --display: var(--font-display, 'Playfair Display', serif);
-  --body: var(--font-dm-sans, 'DM Sans', sans-serif);
+  --display: var(--font-heading, 'Fraunces', serif);
+  --body: var(--font-body, 'Manrope', sans-serif);
   --serp: var(--font-arimo, 'Arimo', Arial, sans-serif);
   --ui: var(--font-arimo, 'Arimo', Arial, sans-serif);
   --mono: var(--font-jetbrains, 'JetBrains Mono', monospace);
@@ -27,8 +29,8 @@ html {
 }
 
 body {
-  background: #050506;
-  color: #fff;
+  background: var(--bg);
+  color: var(--ink);
   font-family: var(--body);
   overflow-x: hidden;
   max-width: 100%;

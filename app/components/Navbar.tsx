@@ -58,8 +58,8 @@ export default function Navbar() {
           justify-content: space-between;
           gap: 16px;
           padding: 20px 56px;
-          border-bottom: 1px solid #141416;
-          background: rgba(5, 5, 6, .5);
+          border-bottom: 1px solid #e8e2d2;
+          background: rgba(247, 243, 234, .5);
           backdrop-filter: blur(12px);
           transform: translateY(-100%);
           animation: navIn .8s var(--ease) .1s forwards;
@@ -75,12 +75,12 @@ export default function Navbar() {
           letter-spacing: -.3px;
           white-space: nowrap;
           text-decoration: none;
-          color: #fff;
+          color: #1a1712;
         }
         .logo :global(img) {
           border-radius: 50%;
         }
-        .logo span { color: var(--gold); }
+        .logo span { color: var(--accent); }
         .nav-links {
           display: flex;
           gap: 32px;
@@ -88,7 +88,7 @@ export default function Navbar() {
         }
         .nav-links a {
           font-size: 13px;
-          color: rgba(255, 255, 255, .42);
+          color: rgba(26, 23, 18, .42);
           text-decoration: none;
           transition: color .2s;
           position: relative;
@@ -100,10 +100,10 @@ export default function Navbar() {
           bottom: -4px;
           width: 0;
           height: 1px;
-          background: var(--gold);
+          background: var(--accent);
           transition: width .3s var(--ease);
         }
-        .nav-links a:hover { color: #fff; }
+        .nav-links a:hover { color: #1a1712; }
         .nav-links a:hover::after { width: 100%; }
         .nav-btn {
           font-family: var(--display);
@@ -112,7 +112,7 @@ export default function Navbar() {
           letter-spacing: 1px;
           text-transform: uppercase;
           color: #000;
-          background: var(--gold);
+          background: var(--accent);
           padding: 10px 20px;
           border-radius: 3px;
           text-decoration: none;
@@ -128,9 +128,9 @@ export default function Navbar() {
           gap: 5px;
           width: 34px;
           height: 34px;
-          border: 1px solid #222;
+          border: 1px solid #e4dcc8;
           border-radius: 6px;
-          background: rgba(11,11,13,.6);
+          background: rgba(255,255,255,.6);
           cursor: pointer;
           flex-shrink: 0;
         }
@@ -138,7 +138,7 @@ export default function Navbar() {
           display: block;
           width: 16px;
           height: 1.5px;
-          background: #fff;
+          background: #1a1712;
           transition: transform .3s var(--ease), opacity .3s var(--ease);
         }
         .burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
@@ -162,8 +162,8 @@ export default function Navbar() {
           right: 0;
           height: 100vh;
           width: min(78vw, 320px);
-          background: #08080a;
-          border-left: 1px solid #1c1c20;
+          background: #ffffff;
+          border-left: 1px solid #e4dcc8;
           display: flex;
           flex-direction: column;
           gap: 4px;
@@ -175,13 +175,13 @@ export default function Navbar() {
         .mobile-menu.open { transform: translateX(0); }
         .mobile-menu a {
           font-size: 15px;
-          color: rgba(255,255,255,.7);
+          color: rgba(26,23,18,.7);
           text-decoration: none;
           padding: 14px 0;
-          border-bottom: 1px solid #16161a;
+          border-bottom: 1px solid #e4dcc8;
           transition: color .2s;
         }
-        .mobile-menu a:hover { color: var(--gold); }
+        .mobile-menu a:hover { color: var(--accent); }
         .mobile-menu a.nav-btn {
           margin-top: 20px;
           text-align: center;
