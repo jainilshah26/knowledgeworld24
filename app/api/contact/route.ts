@@ -27,11 +27,13 @@ export async function POST(request: Request) {
     })
 
     if (error) {
+      console.error('Resend error (contact):', error)
       return NextResponse.json({ error: 'Failed to send email.' }, { status: 500 })
     }
 
     return NextResponse.json({ success: true })
-  } catch {
+  } catch (err) {
+    console.error('Contact submission failed:', err)
     return NextResponse.json({ error: 'Failed to send email.' }, { status: 500 })
   }
 }
