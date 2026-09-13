@@ -19,8 +19,8 @@ export default function ThankYouContent() {
 
       <style jsx global>{`
         .kw24-thank-you.sec { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; padding: 24px; }
-        .kw24-thank-you.sec::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(#141416 1px, transparent 1px), linear-gradient(90deg, #141416 1px, transparent 1px); background-size: 46px 46px; opacity: .4; -webkit-mask-image: radial-gradient(ellipse 55% 60% at 50% 50%, #000 30%, transparent 100%); mask-image: radial-gradient(ellipse 55% 60% at 50% 50%, #000 30%, transparent 100%); }
-        .kw24-thank-you .glow { position: absolute; width: 600px; height: 400px; left: 50%; top: 50%; transform: translate(-50%,-50%); background: radial-gradient(ellipse, rgba(212,175,55,.09) 0%, transparent 70%); pointer-events: none; }
+        .kw24-thank-you.sec::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(#101512 1px, transparent 1px), linear-gradient(90deg, #101512 1px, transparent 1px); background-size: 46px 46px; opacity: .4; -webkit-mask-image: radial-gradient(ellipse 55% 60% at 50% 50%, #000 30%, transparent 100%); mask-image: radial-gradient(ellipse 55% 60% at 50% 50%, #000 30%, transparent 100%); }
+        .kw24-thank-you .glow { position: absolute; width: 600px; height: 400px; left: 50%; top: 50%; transform: translate(-50%,-50%); background: radial-gradient(ellipse, rgba(201,166,107,.09) 0%, transparent 70%); pointer-events: none; }
 
         .kw24-thank-you .card { position: relative; z-index: 2; text-align: center; max-width: 480px; }
 
@@ -40,7 +40,7 @@ export default function ThankYouContent() {
 
         .kw24-thank-you .actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; opacity: 0; transform: translateY(16px); animation: tyUp .7s var(--ease) 1s forwards; }
         .kw24-thank-you .bp { display: inline-flex; align-items: center; gap: 9px; background: var(--gold); color: #000; font-family: var(--display); font-size: 13px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; padding: 15px 28px; border-radius: 6px; text-decoration: none; transition: box-shadow .3s; }
-        .kw24-thank-you .bp:hover { box-shadow: 0 0 40px rgba(212,175,55,.4); }
+        .kw24-thank-you .bp:hover { box-shadow: 0 0 40px rgba(201,166,107,.4); }
         .kw24-thank-you .bs { display: inline-flex; align-items: center; color: rgba(255,255,255,.45); font-size: 13px; padding: 15px 22px; border: 1px solid #222; border-radius: 6px; text-decoration: none; transition: all .3s; }
         .kw24-thank-you .bs:hover { color: #fff; border-color: #333; }
       `}</style>

@@ -36,13 +36,13 @@ export default function Hero() {
     const hoverEls = Array.from(document.querySelectorAll<HTMLElement>('a,[data-magnet]'))
     const onEnter = () => {
       if (cur) { cur.style.width = '14px'; cur.style.height = '14px' }
-      if (cur2) { cur2.style.width = '46px'; cur2.style.height = '46px'; cur2.style.borderColor = 'rgba(212,175,55,.7)' }
+      if (cur2) { cur2.style.width = '46px'; cur2.style.height = '46px'; cur2.style.borderColor = 'rgba(201,166,107,.7)' }
     }
     const leaveHandlers = new Map<HTMLElement, () => void>()
     hoverEls.forEach(el => {
       const onLeave = () => {
         if (cur) { cur.style.width = '7px'; cur.style.height = '7px' }
-        if (cur2) { cur2.style.width = '30px'; cur2.style.height = '30px'; cur2.style.borderColor = 'rgba(212,175,55,.4)' }
+        if (cur2) { cur2.style.width = '30px'; cur2.style.height = '30px'; cur2.style.borderColor = 'rgba(201,166,107,.4)' }
         el.style.transform = ''
       }
       leaveHandlers.set(el, onLeave)
@@ -113,7 +113,7 @@ export default function Hero() {
       }
       pGeo = new THREE.BufferGeometry()
       pGeo.setAttribute('position', new THREE.BufferAttribute(P, 3))
-      pointsMat = new THREE.PointsMaterial({ color: 0xd4af37, size: 1.5, transparent: true, opacity: .9, blending: THREE.AdditiveBlending, depthWrite: false, fog: true })
+      pointsMat = new THREE.PointsMaterial({ color: 0xc9a66b, size: 1.5, transparent: true, opacity: .9, blending: THREE.AdditiveBlending, depthWrite: false, fog: true })
       const points = new THREE.Points(pGeo, pointsMat)
       scene.add(points)
 
@@ -121,12 +121,12 @@ export default function Hero() {
       const lp = new Float32Array(MAXSEG * 6)
       lGeo = new THREE.BufferGeometry()
       lGeo.setAttribute('position', new THREE.BufferAttribute(lp, 3))
-      linesMat = new THREE.LineBasicMaterial({ color: 0xd4af37, transparent: true, opacity: .16, blending: THREE.AdditiveBlending, depthWrite: false, fog: true })
+      linesMat = new THREE.LineBasicMaterial({ color: 0xc9a66b, transparent: true, opacity: .16, blending: THREE.AdditiveBlending, depthWrite: false, fog: true })
       const lines = new THREE.LineSegments(lGeo, linesMat)
       scene.add(lines)
 
       icoGeo = new THREE.IcosahedronGeometry(24, 1)
-      icoMat = new THREE.MeshBasicMaterial({ color: 0xd4af37, wireframe: true, transparent: true, opacity: .1, fog: true })
+      icoMat = new THREE.MeshBasicMaterial({ color: 0xc9a66b, wireframe: true, transparent: true, opacity: .1, fog: true })
       const ico = new THREE.Mesh(icoGeo, icoMat)
       ico.position.set(20, 0, -25)
       scene.add(ico)
@@ -239,7 +239,7 @@ export default function Hero() {
 
       <style jsx global>{`
         #cur { position: fixed; width: 7px; height: 7px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width .25s, height .25s, opacity .25s; }
-        #cur2 { position: fixed; width: 30px; height: 30px; border: 1px solid rgba(212,175,55,.4); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: left .12s ease-out, top .12s ease-out, width .25s, height .25s, border-color .25s; }
+        #cur2 { position: fixed; width: 30px; height: 30px; border: 1px solid rgba(201,166,107,.4); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: left .12s ease-out, top .12s ease-out, width .25s, height .25s, border-color .25s; }
         @media (hover: none) { #cur, #cur2 { display: none; } }
 
         .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 120px 56px 70px; position: relative; overflow: hidden; perspective: 1600px; }
@@ -251,7 +251,7 @@ export default function Hero() {
         .hero .reveal { overflow: hidden; display: block; width: fit-content; margin: 0 auto; }
         .hero .reveal > * { display: block; transform: translateY(110%); animation: heroLineUp .9s var(--ease) forwards; }
         @keyframes heroLineUp { to { transform: translateY(0); } }
-        .hero .badge { display: inline-flex; align-items: center; gap: 9px; border: 1px solid rgba(212,175,55,.3); background: rgba(11,11,13,.6); padding: 7px 16px; border-radius: 100px; font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: 30px; opacity: 0; animation: heroFade .8s ease .2s forwards; }
+        .hero .badge { display: inline-flex; align-items: center; gap: 9px; border: 1px solid rgba(201,166,107,.3); background: rgba(11,11,13,.6); padding: 7px 16px; border-radius: 100px; font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: 30px; opacity: 0; animation: heroFade .8s ease .2s forwards; }
         .hero .badge i { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: heroBlink 1.4s infinite; }
         @keyframes heroBlink { 0%, 100% { opacity: 1; } 50% { opacity: .2; } }
         @keyframes heroFade { to { opacity: 1; } }
@@ -263,10 +263,10 @@ export default function Hero() {
         .hero .rule { width: 60px; height: 1px; background: linear-gradient(90deg,transparent,var(--gold),transparent); margin: 26px 0; opacity: 0; animation: heroFade .9s ease .75s forwards; }
         .hero .sub { font-size: 16.5px; font-weight: 300; color: rgba(255,255,255,.46); line-height: 1.75; max-width: 460px; margin: 0 auto 38px; opacity: 0; animation: heroFade .9s ease .85s forwards; }
         .hero .actions { display: flex; justify-content: center; gap: 13px; opacity: 0; animation: heroFade .9s ease 1s forwards; }
-        .hero .bp { display: inline-flex; align-items: center; gap: 9px; background: linear-gradient(135deg,#e6c860,var(--gold) 60%,#a8821a); color: #000; font-family: var(--display); font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 15px 30px; border-radius: 3px; text-decoration: none; transition: box-shadow .3s; will-change: transform; }
-        .hero .bp:hover { box-shadow: 0 0 44px rgba(212,175,55,.5); }
+        .hero .bp { display: inline-flex; align-items: center; gap: 9px; background: linear-gradient(135deg,#e8d4a8,var(--gold) 60%,#8c6f3e); color: #000; font-family: var(--display); font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 15px 30px; border-radius: 3px; text-decoration: none; transition: box-shadow .3s; will-change: transform; }
+        .hero .bp:hover { box-shadow: 0 0 44px rgba(201,166,107,.5); }
         .hero .bs { display: inline-flex; align-items: center; color: rgba(255,255,255,.46); font-size: 13px; letter-spacing: .3px; padding: 15px 22px; border: 1px solid #262629; background: rgba(11,11,13,.5); border-radius: 3px; text-decoration: none; transition: all .3s; will-change: transform; }
-        .hero .bs:hover { color: #fff; border-color: rgba(212,175,55,.5); }
+        .hero .bs:hover { color: #fff; border-color: rgba(201,166,107,.5); }
 
         @media (max-width: 980px) {
           .hero { padding: 100px 22px 50px; }

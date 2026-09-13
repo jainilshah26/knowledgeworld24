@@ -1,13 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --black: #050506;
-  --gold: #d4af37;
-  --gold-d: #a8821a;
+  --black: #070d0a;
+  --emerald: #1b4d3e;
+  --emerald-d: #0f2e25;
+  --gold: #c9a66b;
+  --gold-d: #8c6f3e;
+  --ivory: #f5f1e8;
   --white: #fff;
   --ease: cubic-bezier(.6, .01, .05, .95);
-  --display: var(--font-display, 'Playfair Display', serif);
-  --body: var(--font-dm-sans, 'DM Sans', sans-serif);
+  --display: var(--font-heading, 'Fraunces', serif);
+  --body: var(--font-body, 'Manrope', sans-serif);
   --serp: var(--font-arimo, 'Arimo', Arial, sans-serif);
   --ui: var(--font-arimo, 'Arimo', Arial, sans-serif);
   --mono: var(--font-jetbrains, 'JetBrains Mono', monospace);
@@ -27,7 +30,7 @@ html {
 }
 
 body {
-  background: #050506;
+  background: #070d0a;
   color: #fff;
   font-family: var(--body);
   overflow-x: hidden;

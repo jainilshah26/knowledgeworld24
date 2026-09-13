@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
-import { Playfair_Display, DM_Sans, JetBrains_Mono, Arimo } from 'next/font/google'
+import { Fraunces, Manrope, JetBrains_Mono, Arimo } from 'next/font/google'
 import './globals.css'
 import StyledJsxRegistry from './registry'
 
@@ -12,17 +12,17 @@ const SITE_TITLE = 'Knowledge World24 — AI-First Digital Marketing Agency in A
 const SITE_DESCRIPTION =
   'AI-first digital marketing agency in Ahmedabad crafting SEO, AI automation, and performance marketing campaigns that adapt, learn, and deliver 5x ROI.'
 
-const playfair = Playfair_Display({
-  variable: '--font-display',
+const fraunces = Fraunces({
+  variable: '--font-heading',
   subsets: ['latin'],
   weight: ['500', '600', '700', '800', '900'],
   style: ['normal', 'italic'],
 })
 
-const dmSans = DM_Sans({
-  variable: '--font-dm-sans',
+const manrope = Manrope({
+  variable: '--font-body',
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
+  weight: ['300', '400', '500', '600', '700'],
 })
 
 const jetbrainsMono = JetBrains_Mono({
@@ -88,7 +88,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#050506',
+  themeColor: '#070d0a',
   colorScheme: 'dark',
 }
 
@@ -119,7 +119,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${dmSans.variable} ${jetbrainsMono.variable} ${arimo.variable}`}>
+    <html lang="en" className={`${fraunces.variable} ${manrope.variable} ${jetbrainsMono.variable} ${arimo.variable}`}>
       <body>
         <script
           type="application/ld+json"

@@ -58,7 +58,7 @@ export default function Navbar() {
           justify-content: space-between;
           gap: 16px;
           padding: 20px 56px;
-          border-bottom: 1px solid #141416;
+          border-bottom: 1px solid #101512;
           background: rgba(5, 5, 6, .5);
           backdrop-filter: blur(12px);
           transform: translateY(-100%);
@@ -163,7 +163,7 @@ export default function Navbar() {
           height: 100vh;
           width: min(78vw, 320px);
           background: #08080a;
-          border-left: 1px solid #1c1c20;
+          border-left: 1px solid #17211c;
           display: flex;
           flex-direction: column;
           gap: 4px;
@@ -178,7 +178,7 @@ export default function Navbar() {
           color: rgba(255,255,255,.7);
           text-decoration: none;
           padding: 14px 0;
-          border-bottom: 1px solid #16161a;
+          border-bottom: 1px solid #121a15;
           transition: color .2s;
         }
         .mobile-menu a:hover { color: var(--gold); }

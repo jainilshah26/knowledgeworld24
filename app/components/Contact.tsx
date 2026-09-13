@@ -86,9 +86,9 @@ export default function Contact() {
       </div>
 
       <style jsx global>{`
-        .kw24-contact.sec { position: relative; padding: 120px 56px; overflow: hidden; --card: #0b0b0d; --card-b: #1c1c20; }
-        .kw24-contact.sec::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(#141416 1px, transparent 1px), linear-gradient(90deg, #141416 1px, transparent 1px); background-size: 46px 46px; opacity: .4; -webkit-mask-image: radial-gradient(ellipse 60% 70% at 50% 50%, #000 30%, transparent 100%); mask-image: radial-gradient(ellipse 60% 70% at 50% 50%, #000 30%, transparent 100%); z-index: 0; }
-        .kw24-contact .glow { position: absolute; width: 700px; height: 400px; left: 50%; top: 50%; transform: translate(-50%,-50%); background: radial-gradient(ellipse, rgba(212,175,55,.06) 0%, transparent 70%); z-index: 0; pointer-events: none; }
+        .kw24-contact.sec { position: relative; padding: 120px 56px; overflow: hidden; --card: #0a0f0c; --card-b: #17211c; }
+        .kw24-contact.sec::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(#101512 1px, transparent 1px), linear-gradient(90deg, #101512 1px, transparent 1px); background-size: 46px 46px; opacity: .4; -webkit-mask-image: radial-gradient(ellipse 60% 70% at 50% 50%, #000 30%, transparent 100%); mask-image: radial-gradient(ellipse 60% 70% at 50% 50%, #000 30%, transparent 100%); z-index: 0; }
+        .kw24-contact .glow { position: absolute; width: 700px; height: 400px; left: 50%; top: 50%; transform: translate(-50%,-50%); background: radial-gradient(ellipse, rgba(201,166,107,.06) 0%, transparent 70%); z-index: 0; pointer-events: none; }
 
         .kw24-contact .wrap { position: relative; z-index: 2; max-width: 520px; margin: 0 auto; text-align: center; }
         .kw24-contact .badge { display: inline-flex; align-items: center; gap: 8px; border: 1px solid #222; padding: 6px 14px; border-radius: 100px; font-size: 11px; color: rgba(255,255,255,.45); letter-spacing: .5px; margin-bottom: 22px; opacity: 0; transform: translateY(16px); transition: all .6s var(--ease); }
@@ -106,11 +106,11 @@ export default function Contact() {
         .kw24-contact .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .kw24-contact input, .kw24-contact textarea { width: 100%; background: var(--card); border: 1px solid var(--card-b); color: #fff; font-family: var(--body); font-size: 14px; font-weight: 300; padding: 14px 16px; border-radius: 6px; outline: none; transition: border-color .25s, box-shadow .25s; }
         .kw24-contact input::placeholder, .kw24-contact textarea::placeholder { color: rgba(255,255,255,.25); }
-        .kw24-contact input:focus, .kw24-contact textarea:focus { border-color: rgba(212,175,55,.55); box-shadow: 0 0 0 3px rgba(212,175,55,.08); }
+        .kw24-contact input:focus, .kw24-contact textarea:focus { border-color: rgba(201,166,107,.55); box-shadow: 0 0 0 3px rgba(201,166,107,.08); }
         .kw24-contact textarea { resize: none; height: 110px; line-height: 1.6; font-family: var(--body); }
 
         .kw24-contact .submit { margin-top: 6px; background: var(--gold); color: #000; font-family: var(--display); font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 16px; border: none; border-radius: 6px; cursor: pointer; transition: box-shadow .3s; }
-        .kw24-contact .submit:hover { box-shadow: 0 0 40px rgba(212,175,55,.4); }
+        .kw24-contact .submit:hover { box-shadow: 0 0 40px rgba(201,166,107,.4); }
         .kw24-contact .submit:disabled { opacity: .7; cursor: default; }
         .kw24-contact .form-error { font-size: 13px; color: #ff6b6b; margin-top: 4px; }
 

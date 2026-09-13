@@ -247,10 +247,10 @@ export default function Services() {
       id="services"
       className="sec"
       style={{
-        ['--grid' as string]: '#141416',
+        ['--grid' as string]: '#101512',
         ['--muted' as string]: 'rgba(255,255,255,.45)',
-        ['--card' as string]: '#0b0b0d',
-        ['--card-b' as string]: '#1e1e22',
+        ['--card' as string]: '#0a0f0c',
+        ['--card-b' as string]: '#1a2420',
       }}
     >
       <div className="head">
@@ -292,7 +292,7 @@ export default function Services() {
         h2 .g{color:var(--gold)}
         .nav-arrows{display:flex;gap:10px}
         .arrow{width:46px;height:46px;border-radius:50%;border:1px solid var(--card-b);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .25s;background:var(--card)}
-        .arrow:hover{border-color:var(--gold);background:rgba(212,175,55,.08)}
+        .arrow:hover{border-color:var(--gold);background:rgba(201,166,107,.08)}
         .arrow svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round}
 
         .track-wrap{position:relative;z-index:2;overflow:hidden;padding:8px 56px 24px;cursor:grab}
@@ -300,9 +300,9 @@ export default function Services() {
         .track{display:flex;gap:20px;will-change:transform}
 
         .card{flex:0 0 340px;background:var(--card);border:1px solid var(--card-b);border-radius:16px;padding:30px;display:flex;flex-direction:column;min-height:400px;position:relative;overflow:hidden;user-select:none;transition:border-color .3s}
-        .card:hover{border-color:rgba(212,175,55,.35)}
+        .card:hover{border-color:rgba(201,166,107,.35)}
         .num{font-family:var(--mono);font-size:38px;font-weight:400;color:rgba(255,255,255,.06);position:absolute;top:18px;right:22px;line-height:1}
-        .icowrap{width:48px;height:48px;border-radius:12px;background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.2);display:flex;align-items:center;justify-content:center;margin-bottom:24px;position:relative;z-index:1}
+        .icowrap{width:48px;height:48px;border-radius:12px;background:rgba(201,166,107,.08);border:1px solid rgba(201,166,107,.2);display:flex;align-items:center;justify-content:center;margin-bottom:24px;position:relative;z-index:1}
         .icowrap :global(svg){width:23px;height:23px;stroke:var(--gold);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
         .ctitle{font-family:var(--display);font-size:21px;font-weight:700;letter-spacing:-.3px;margin-bottom:12px;position:relative;z-index:1}
         .cdesc{font-size:13.5px;color:var(--muted);line-height:1.7;font-weight:300;margin-bottom:24px;position:relative;z-index:1}

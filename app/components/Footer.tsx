@@ -64,18 +64,18 @@ export default function Footer() {
       </div>
 
       <style jsx global>{`
-        .kw24-footer { position: relative; border-top: 1px solid #1c1c20; padding: 64px 56px 28px; overflow: hidden; --muted2: rgba(255,255,255,.22); }
-        .kw24-footer::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(#1c1c20 1px, transparent 1px), linear-gradient(90deg, #1c1c20 1px, transparent 1px); background-size: 46px 46px; opacity: .25; -webkit-mask-image: radial-gradient(ellipse 70% 100% at 0% 0%, #000 0%, transparent 70%); mask-image: radial-gradient(ellipse 70% 100% at 0% 0%, #000 0%, transparent 70%); }
+        .kw24-footer { position: relative; border-top: 1px solid #17211c; padding: 64px 56px 28px; overflow: hidden; --muted2: rgba(255,255,255,.22); }
+        .kw24-footer::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(#17211c 1px, transparent 1px), linear-gradient(90deg, #17211c 1px, transparent 1px); background-size: 46px 46px; opacity: .25; -webkit-mask-image: radial-gradient(ellipse 70% 100% at 0% 0%, #000 0%, transparent 70%); mask-image: radial-gradient(ellipse 70% 100% at 0% 0%, #000 0%, transparent 70%); }
 
-        .kw24-footer .top { position: relative; z-index: 2; max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.1fr; gap: 40px; padding-bottom: 48px; border-bottom: 1px solid #1c1c20; }
+        .kw24-footer .top { position: relative; z-index: 2; max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.1fr; gap: 40px; padding-bottom: 48px; border-bottom: 1px solid #17211c; }
 
         .kw24-footer .brand .logo { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 800; font-size: 18px; letter-spacing: -.3px; margin-bottom: 14px; }
         .kw24-footer .brand .logo :global(img) { border-radius: 50%; }
         .kw24-footer .brand .logo span { color: var(--gold); }
         .kw24-footer .brand p { font-size: 13.5px; color: rgba(255,255,255,.4); line-height: 1.7; max-width: 260px; margin-bottom: 20px; font-weight: 300; }
         .kw24-footer .socials { display: flex; gap: 10px; }
-        .kw24-footer .socials a { width: 34px; height: 34px; border: 1px solid #1c1c20; border-radius: 8px; display: flex; align-items: center; justify-content: center; transition: all .25s; }
-        .kw24-footer .socials a:hover { border-color: var(--gold); background: rgba(212,175,55,.08); }
+        .kw24-footer .socials a { width: 34px; height: 34px; border: 1px solid #17211c; border-radius: 8px; display: flex; align-items: center; justify-content: center; transition: all .25s; }
+        .kw24-footer .socials a:hover { border-color: var(--gold); background: rgba(201,166,107,.08); }
         .kw24-footer .socials svg { width: 15px; height: 15px; stroke: rgba(255,255,255,.4); fill: none; stroke-width: 1.6; transition: stroke .25s; }
         .kw24-footer .socials a:hover svg { stroke: var(--gold); }
 
@@ -88,8 +88,8 @@ export default function Footer() {
 
         .kw24-footer .newsletter p { font-size: 13px; color: rgba(255,255,255,.4); line-height: 1.6; margin-bottom: 14px; font-weight: 300; }
         .kw24-footer .nform { display: flex; gap: 8px; }
-        .kw24-footer .nform input { flex: 1; background: #0b0b0d; border: 1px solid #1c1c20; color: #fff; font-size: 13px; padding: 11px 14px; border-radius: 6px; outline: none; transition: border-color .25s; }
-        .kw24-footer .nform input:focus { border-color: rgba(212,175,55,.5); }
+        .kw24-footer .nform input { flex: 1; background: #0a0f0c; border: 1px solid #17211c; color: #fff; font-size: 13px; padding: 11px 14px; border-radius: 6px; outline: none; transition: border-color .25s; }
+        .kw24-footer .nform input:focus { border-color: rgba(201,166,107,.5); }
         .kw24-footer .nform button { background: var(--gold); color: #000; border: none; border-radius: 6px; padding: 0 16px; font-family: var(--display); font-weight: 700; font-size: 16px; cursor: pointer; transition: opacity .2s; }
         .kw24-footer .nform button:hover { opacity: .85; }
 
