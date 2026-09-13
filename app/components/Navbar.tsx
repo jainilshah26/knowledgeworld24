@@ -15,27 +15,29 @@ export default function Navbar() {
 
   return (
     <nav className="kw24-nav">
-      <a href="/" className="logo">
-        <Image src="/logo.png" alt="Knowledge World24" width={34} height={34} priority />
-        Knowledge<span>World24</span>
-      </a>
-      <ul className="nav-links">
-        <li><a href="#services">Services</a></li>
-        <li><a href="#ai-automation">AI Automation</a></li>
-        <li><a href="#performance-marketing">Ads</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <a href="#contact" className="nav-btn" data-magnet>Free Audit</a>
+      <div className="bar">
+        <a href="/" className="logo">
+          <Image src="/logo.png" alt="Knowledge World24" width={34} height={34} priority />
+          Knowledge<span>World24</span>
+        </a>
+        <ul className="nav-links">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#ai-automation">AI Automation</a></li>
+          <li><a href="#performance-marketing">Ads</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a href="#contact" className="nav-btn" data-magnet>Free Audit</a>
 
-      <button
-        type="button"
-        className={`burger${open ? ' open' : ''}`}
-        aria-label="Toggle menu"
-        aria-expanded={open}
-        onClick={() => setOpen(o => !o)}
-      >
-        <span></span><span></span><span></span>
-      </button>
+        <button
+          type="button"
+          className={`burger${open ? ' open' : ''}`}
+          aria-label="Toggle menu"
+          aria-expanded={open}
+          onClick={() => setOpen(o => !o)}
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
 
       <div className={`overlay${open ? ' open' : ''}`} onClick={() => setOpen(false)} />
       <div className={`mobile-menu${open ? ' open' : ''}`}>
@@ -53,6 +55,8 @@ export default function Navbar() {
           left: 0;
           right: 0;
           z-index: 100;
+        }
+        .bar {
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -190,9 +194,9 @@ export default function Navbar() {
         }
 
         @media (max-width: 980px) {
-          .kw24-nav { padding: 16px 22px; }
+          .bar { padding: 16px 22px; }
           .nav-links { display: none; }
-          .nav-btn { display: none; }
+          .bar > .nav-btn { display: none; }
           .burger { display: flex; }
         }
         @media (max-width: 400px) {
