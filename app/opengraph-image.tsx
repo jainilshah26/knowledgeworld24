@@ -15,9 +15,9 @@ export default async function Image() {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          background: '#070d0a',
+          background: '#0b1d17',
           backgroundImage:
-            'radial-gradient(ellipse 60% 60% at 50% 40%, rgba(201,166,107,0.18) 0%, transparent 70%)',
+            'radial-gradient(ellipse 60% 60% at 50% 40%, rgba(46,158,115,0.18) 0%, transparent 70%)',
         }}
       >
         <div
@@ -32,7 +32,7 @@ export default async function Image() {
             marginBottom: 28,
           }}
         >
-          Knowledge<span style={{ color: '#c9a66b' }}>World24</span>
+          Knowledge<span style={{ color: '#2e9e73' }}>World24</span>
         </div>
         <div
           style={{
@@ -45,7 +45,7 @@ export default async function Image() {
             lineHeight: 1.15,
           }}
         >
-          From Page 2 to <span style={{ color: '#c9a66b', marginLeft: 18 }}>Rank #1.</span>
+          From Page 2 to <span style={{ color: '#2e9e73', marginLeft: 18 }}>Rank #1.</span>
         </div>
         <div
           style={{

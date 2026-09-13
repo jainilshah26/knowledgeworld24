@@ -131,7 +131,7 @@ export default function AiAgents() {
 
         <div className="agent-pills">
           <div className="apill">
-            <div className="ico" style={{ background: 'var(--gold)' }}><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3M11 8v6M8 11h6" /></svg></div>
+            <div className="ico" style={{ background: 'var(--accent)' }}><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3M11 8v6M8 11h6" /></svg></div>
             <div className="meta"><div className="nm">SEO Agent</div><div className="ts" ref={seoTaskRef}>Auditing 1,240 URLs…</div></div>
             <div className="stat"><span className="d"></span>active</div>
           </div>
@@ -182,7 +182,7 @@ export default function AiAgents() {
                 <div className="ncount" ref={c2Ref}>+0 leads</div>
               </div>
               <div className="node" ref={n3Ref} style={{ left: 372, top: 44 }}>
-                <div className="nh"><div className="nic" style={{ background: 'var(--gold)' }}>AI</div><div className="nt">AI Agent — ICP</div></div>
+                <div className="nh"><div className="nic" style={{ background: 'var(--accent)' }}>AI</div><div className="nt">AI Agent — ICP</div></div>
                 <div className="nd">Score &amp; filter</div>
                 <div className="ncount" ref={c3Ref}>0 qualified</div>
               </div>
@@ -213,10 +213,10 @@ export default function AiAgents() {
 
         .kw24-ai-agents .left { position: relative; z-index: 3; }
         .kw24-ai-agents .badge { display: inline-flex; align-items: center; gap: 8px; border: 1px solid #222; padding: 6px 14px; border-radius: 100px; font-size: 11px; color: rgba(255,255,255,.42); letter-spacing: .5px; margin-bottom: 26px; }
-        .kw24-ai-agents .badge i { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: aiBlink 1.4s infinite; }
+        .kw24-ai-agents .badge i { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: aiBlink 1.4s infinite; }
         @keyframes aiBlink { 0%, 100% { opacity: 1; } 50% { opacity: .2; } }
         .kw24-ai-agents h2 { font-family: var(--display); font-size: clamp(32px,3.4vw,52px); font-weight: 800; line-height: 1.04; letter-spacing: -1.6px; margin-bottom: 20px; }
-        .kw24-ai-agents h2 .g { color: var(--gold); }
+        .kw24-ai-agents h2 .g { color: var(--ivory); }
         .kw24-ai-agents .sub { font-size: 16px; font-weight: 300; color: rgba(255,255,255,.42); line-height: 1.7; max-width: 400px; margin-bottom: 30px; }
 
         .kw24-ai-agents .agent-pills { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
@@ -229,11 +229,11 @@ export default function AiAgents() {
         .kw24-ai-agents .apill .stat { font-family: var(--mono); font-size: 10px; color: var(--green); display: flex; align-items: center; gap: 5px; }
         .kw24-ai-agents .apill .stat .d { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: aiBlink 1.1s infinite; }
 
-        .kw24-ai-agents .bp { display: inline-flex; align-items: center; gap: 9px; background: var(--gold); color: #000; font-family: var(--display); font-size: 13px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; padding: 14px 26px; border-radius: 3px; text-decoration: none; transition: opacity .2s; }
+        .kw24-ai-agents .bp { display: inline-flex; align-items: center; gap: 9px; background: var(--accent); color: #000; font-family: var(--display); font-size: 13px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; padding: 14px 26px; border-radius: 3px; text-decoration: none; transition: opacity .2s; }
         .kw24-ai-agents .bp:hover { opacity: .85; }
 
         .kw24-ai-agents .right { position: relative; z-index: 3; min-width: 0; }
-        .kw24-ai-agents .canvas { background: #090e0b; border: 1px solid #17211c; border-radius: 12px; overflow: hidden; box-shadow: 0 40px 120px rgba(201,166,107,.08), 0 20px 60px rgba(0,0,0,.6); }
+        .kw24-ai-agents .canvas { background: #090e0b; border: 1px solid #17211c; border-radius: 12px; overflow: hidden; box-shadow: 0 40px 120px rgba(46,158,115,.08), 0 20px 60px rgba(0,0,0,.6); }
         .kw24-ai-agents .cv-bar { display: flex; align-items: center; gap: 10px; padding: 11px 16px; border-bottom: 1px solid #161619; background: #0d0d10; }
         .kw24-ai-agents .cv-title { font-family: var(--mono); font-size: 11px; color: #fff; display: flex; align-items: center; gap: 8px; }
         .kw24-ai-agents .cv-title .wf { width: 18px; height: 18px; border-radius: 5px; background: #ea4b71; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 11px; font-family: var(--display); }
@@ -245,25 +245,25 @@ export default function AiAgents() {
         .kw24-ai-agents .stage { position: relative; width: 600px; height: 320px; flex-shrink: 0; transform-origin: top center; }
         .kw24-ai-agents svg.flow { position: absolute; inset: 0; width: 600px; height: 320px; }
         .kw24-ai-agents .conn { fill: none; stroke: #2a2a30; stroke-width: 2; }
-        .kw24-ai-agents .packet { fill: var(--gold); filter: drop-shadow(0 0 5px var(--gold)); }
+        .kw24-ai-agents .packet { fill: var(--accent); filter: drop-shadow(0 0 5px var(--accent)); }
 
         .kw24-ai-agents .node { position: absolute; width: 124px; height: 70px; background: var(--node); border: 1px solid var(--node-b); border-radius: 9px; padding: 9px 11px; transition: border-color .3s, box-shadow .3s; opacity: 0; transform: translateY(10px); }
         .kw24-ai-agents .node.show { opacity: 1; transform: translateY(0); }
-        .kw24-ai-agents .node.active { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold), 0 0 22px rgba(201,166,107,.18); }
+        .kw24-ai-agents .node.active { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 0 22px rgba(46,158,115,.18); }
         .kw24-ai-agents .node .nh { display: flex; align-items: center; gap: 7px; margin-bottom: 5px; }
         .kw24-ai-agents .node .nic { width: 20px; height: 20px; border-radius: 5px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: var(--display); font-weight: 800; font-size: 10px; color: #fff; }
         .kw24-ai-agents .node .nt { font-size: 10px; font-weight: 600; color: #fff; line-height: 1.1; }
         .kw24-ai-agents .node .nd { font-family: var(--mono); font-size: 8.5px; color: rgba(255,255,255,.42); line-height: 1.3; }
-        .kw24-ai-agents .node .ncount { font-family: var(--mono); font-size: 9px; color: var(--gold); margin-top: 3px; font-weight: 500; }
+        .kw24-ai-agents .node .ncount { font-family: var(--mono); font-size: 9px; color: var(--accent); margin-top: 3px; font-weight: 500; }
 
         .kw24-ai-agents .cv-foot { display: flex; align-items: center; justify-content: space-between; padding: 11px 16px; border-top: 1px solid #161619; background: #0d0d10; }
         .kw24-ai-agents .cv-foot .lf { font-family: var(--mono); font-size: 10px; color: rgba(255,255,255,.42); }
-        .kw24-ai-agents .cv-foot .lc { font-family: var(--display); font-size: 18px; font-weight: 800; color: var(--gold); }
+        .kw24-ai-agents .cv-foot .lc { font-family: var(--display); font-size: 18px; font-weight: 800; color: var(--accent); }
         .kw24-ai-agents .cv-foot .log { font-family: var(--mono); font-size: 10px; color: var(--green); display: flex; align-items: center; gap: 6px; }
 
-        .kw24-ai-agents .roasbadge { position: absolute; top: -50px; right: 24px; z-index: 6; background: #070d0a; border: 1px solid var(--gold); border-radius: 100px; padding: 8px 16px; display: flex; align-items: center; gap: 9px; box-shadow: 0 0 30px rgba(201,166,107,.3); }
+        .kw24-ai-agents .roasbadge { position: absolute; top: -50px; right: 24px; z-index: 6; background: #0b1d17; border: 1px solid var(--accent); border-radius: 100px; padding: 8px 16px; display: flex; align-items: center; gap: 9px; box-shadow: 0 0 30px rgba(46,158,115,.3); }
         .kw24-ai-agents .roasbadge .lbl { font-size: 11px; color: rgba(255,255,255,.42); }
-        .kw24-ai-agents .roasbadge .v { font-family: var(--display); font-size: 16px; font-weight: 800; color: var(--gold); }
+        .kw24-ai-agents .roasbadge .v { font-family: var(--display); font-size: 16px; font-weight: 800; color: var(--accent); }
 
         @media (max-width: 980px) {
           .kw24-ai-agents.sec { padding: 70px 22px; }

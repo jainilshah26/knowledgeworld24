@@ -1,12 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --black: #070d0a;
-  --emerald: #1b4d3e;
-  --emerald-d: #0f2e25;
-  --gold: #c9a66b;
-  --gold-d: #8c6f3e;
-  --ivory: #f5f1e8;
+  --black: #0b1d17;
+  --accent: #2e9e73;
+  --accent-d: #1f7355;
+  --ivory: #e8e1d3;
   --white: #fff;
   --ease: cubic-bezier(.6, .01, .05, .95);
   --display: var(--font-heading, 'Fraunces', serif);
@@ -30,7 +28,7 @@ html {
 }
 
 body {
-  background: #070d0a;
+  background: #0b1d17;
   color: #fff;
   font-family: var(--body);
   overflow-x: hidden;

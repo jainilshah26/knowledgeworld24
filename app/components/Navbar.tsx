@@ -80,7 +80,7 @@ export default function Navbar() {
         .logo :global(img) {
           border-radius: 50%;
         }
-        .logo span { color: var(--gold); }
+        .logo span { color: var(--accent); }
         .nav-links {
           display: flex;
           gap: 32px;
@@ -100,7 +100,7 @@ export default function Navbar() {
           bottom: -4px;
           width: 0;
           height: 1px;
-          background: var(--gold);
+          background: var(--accent);
           transition: width .3s var(--ease);
         }
         .nav-links a:hover { color: #fff; }
@@ -112,7 +112,7 @@ export default function Navbar() {
           letter-spacing: 1px;
           text-transform: uppercase;
           color: #000;
-          background: var(--gold);
+          background: var(--accent);
           padding: 10px 20px;
           border-radius: 3px;
           text-decoration: none;
@@ -181,7 +181,7 @@ export default function Navbar() {
           border-bottom: 1px solid #121a15;
           transition: color .2s;
         }
-        .mobile-menu a:hover { color: var(--gold); }
+        .mobile-menu a:hover { color: var(--accent); }
         .mobile-menu a.nav-btn {
           margin-top: 20px;
           text-align: center;

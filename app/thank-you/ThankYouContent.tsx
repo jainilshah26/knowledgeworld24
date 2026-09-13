@@ -20,12 +20,12 @@ export default function ThankYouContent() {
       <style jsx global>{`
         .kw24-thank-you.sec { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; padding: 24px; }
         .kw24-thank-you.sec::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(#101512 1px, transparent 1px), linear-gradient(90deg, #101512 1px, transparent 1px); background-size: 46px 46px; opacity: .4; -webkit-mask-image: radial-gradient(ellipse 55% 60% at 50% 50%, #000 30%, transparent 100%); mask-image: radial-gradient(ellipse 55% 60% at 50% 50%, #000 30%, transparent 100%); }
-        .kw24-thank-you .glow { position: absolute; width: 600px; height: 400px; left: 50%; top: 50%; transform: translate(-50%,-50%); background: radial-gradient(ellipse, rgba(201,166,107,.09) 0%, transparent 70%); pointer-events: none; }
+        .kw24-thank-you .glow { position: absolute; width: 600px; height: 400px; left: 50%; top: 50%; transform: translate(-50%,-50%); background: radial-gradient(ellipse, rgba(46,158,115,.09) 0%, transparent 70%); pointer-events: none; }
 
         .kw24-thank-you .card { position: relative; z-index: 2; text-align: center; max-width: 480px; }
 
-        .kw24-thank-you .check { width: 76px; height: 76px; border-radius: 50%; border: 1.5px solid var(--gold); display: flex; align-items: center; justify-content: center; margin: 0 auto 32px; opacity: 0; transform: scale(.6); animation: tyPop .6s var(--ease) .1s forwards; }
-        .kw24-thank-you .check svg { width: 32px; height: 32px; stroke: var(--gold); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 40; stroke-dashoffset: 40; animation: tyDraw .5s ease .5s forwards; }
+        .kw24-thank-you .check { width: 76px; height: 76px; border-radius: 50%; border: 1.5px solid var(--accent); display: flex; align-items: center; justify-content: center; margin: 0 auto 32px; opacity: 0; transform: scale(.6); animation: tyPop .6s var(--ease) .1s forwards; }
+        .kw24-thank-you .check svg { width: 32px; height: 32px; stroke: var(--accent); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 40; stroke-dashoffset: 40; animation: tyDraw .5s ease .5s forwards; }
         @keyframes tyPop { to { opacity: 1; transform: scale(1); } }
         @keyframes tyDraw { to { stroke-dashoffset: 0; } }
 
@@ -33,14 +33,14 @@ export default function ThankYouContent() {
         @keyframes tyFade { to { opacity: 1; } }
 
         .kw24-thank-you h1 { font-family: var(--display); font-size: clamp(30px,4.5vw,46px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 16px; opacity: 0; transform: translateY(16px); animation: tyUp .7s var(--ease) .8s forwards; }
-        .kw24-thank-you h1 .g { color: var(--gold); }
+        .kw24-thank-you h1 .g { color: var(--ivory); }
         @keyframes tyUp { to { opacity: 1; transform: translateY(0); } }
 
         .kw24-thank-you .sub { font-size: 15px; font-weight: 300; color: rgba(255,255,255,.45); line-height: 1.7; max-width: 400px; margin: 0 auto 40px; opacity: 0; transform: translateY(16px); animation: tyUp .7s var(--ease) .9s forwards; }
 
         .kw24-thank-you .actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; opacity: 0; transform: translateY(16px); animation: tyUp .7s var(--ease) 1s forwards; }
-        .kw24-thank-you .bp { display: inline-flex; align-items: center; gap: 9px; background: var(--gold); color: #000; font-family: var(--display); font-size: 13px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; padding: 15px 28px; border-radius: 6px; text-decoration: none; transition: box-shadow .3s; }
-        .kw24-thank-you .bp:hover { box-shadow: 0 0 40px rgba(201,166,107,.4); }
+        .kw24-thank-you .bp { display: inline-flex; align-items: center; gap: 9px; background: var(--accent); color: #000; font-family: var(--display); font-size: 13px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; padding: 15px 28px; border-radius: 6px; text-decoration: none; transition: box-shadow .3s; }
+        .kw24-thank-you .bp:hover { box-shadow: 0 0 40px rgba(46,158,115,.4); }
         .kw24-thank-you .bs { display: inline-flex; align-items: center; color: rgba(255,255,255,.45); font-size: 13px; padding: 15px 22px; border: 1px solid #222; border-radius: 6px; text-decoration: none; transition: all .3s; }
         .kw24-thank-you .bs:hover { color: #fff; border-color: #333; }
       `}</style>
