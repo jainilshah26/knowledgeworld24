@@ -247,10 +247,10 @@ export default function Services() {
       id="services"
       className="sec"
       style={{
-        ['--grid' as string]: '#101512',
-        ['--muted' as string]: 'rgba(255,255,255,.45)',
-        ['--card' as string]: '#0a0f0c',
-        ['--card-b' as string]: '#1a2420',
+        ['--grid' as string]: '#e8e2d2',
+        ['--muted' as string]: 'rgba(26,23,18,.45)',
+        ['--card' as string]: '#ffffff',
+        ['--card-b' as string]: '#e4dcc8',
       }}
     >
       <div className="head">
@@ -285,24 +285,24 @@ export default function Services() {
         .sec::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:46px 46px;opacity:.35;z-index:0}
 
         .head{position:relative;z-index:2;max-width:1240px;margin:0 auto 48px;padding:0 56px;display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
-        .badge{display:inline-flex;align-items:center;gap:8px;border:1px solid #222;padding:6px 14px;border-radius:100px;font-size:11px;color:var(--muted);letter-spacing:.5px;margin-bottom:22px}
+        .badge{display:inline-flex;align-items:center;gap:8px;border:1px solid #e4dcc8;padding:6px 14px;border-radius:100px;font-size:11px;color:var(--muted);letter-spacing:.5px;margin-bottom:22px}
         .badge i{width:6px;height:6px;background:var(--accent);border-radius:50%;animation:blink 1.4s infinite}
         @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
         h2{font-family:var(--display);font-size:clamp(30px,3.6vw,50px);font-weight:800;letter-spacing:-1.5px;line-height:1.08}
-        h2 .g{color:var(--ivory)}
+        h2 .g{color:var(--accent)}
         .nav-arrows{display:flex;gap:10px}
         .arrow{width:46px;height:46px;border-radius:50%;border:1px solid var(--card-b);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .25s;background:var(--card)}
-        .arrow:hover{border-color:var(--accent);background:rgba(46,158,115,.08)}
-        .arrow svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round}
+        .arrow:hover{border-color:var(--accent);background:rgba(184,145,43,.08)}
+        .arrow svg{width:16px;height:16px;stroke:#1a1712;fill:none;stroke-width:2;stroke-linecap:round}
 
         .track-wrap{position:relative;z-index:2;overflow:hidden;padding:8px 56px 24px;cursor:grab}
         .track-wrap.dragging{cursor:grabbing}
         .track{display:flex;gap:20px;will-change:transform}
 
         .card{flex:0 0 340px;background:var(--card);border:1px solid var(--card-b);border-radius:16px;padding:30px;display:flex;flex-direction:column;min-height:400px;position:relative;overflow:hidden;user-select:none;transition:border-color .3s}
-        .card:hover{border-color:rgba(46,158,115,.35)}
-        .num{font-family:var(--mono);font-size:38px;font-weight:400;color:rgba(255,255,255,.06);position:absolute;top:18px;right:22px;line-height:1}
-        .icowrap{width:48px;height:48px;border-radius:12px;background:rgba(46,158,115,.08);border:1px solid rgba(46,158,115,.2);display:flex;align-items:center;justify-content:center;margin-bottom:24px;position:relative;z-index:1}
+        .card:hover{border-color:rgba(184,145,43,.35)}
+        .num{font-family:var(--mono);font-size:38px;font-weight:400;color:rgba(26,23,18,.06);position:absolute;top:18px;right:22px;line-height:1}
+        .icowrap{width:48px;height:48px;border-radius:12px;background:rgba(184,145,43,.08);border:1px solid rgba(184,145,43,.2);display:flex;align-items:center;justify-content:center;margin-bottom:24px;position:relative;z-index:1}
         .icowrap :global(svg){width:23px;height:23px;stroke:var(--accent);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
         .ctitle{font-family:var(--display);font-size:21px;font-weight:700;letter-spacing:-.3px;margin-bottom:12px;position:relative;z-index:1}
         .cdesc{font-size:13.5px;color:var(--muted);line-height:1.7;font-weight:300;margin-bottom:24px;position:relative;z-index:1}

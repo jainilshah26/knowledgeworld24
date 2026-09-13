@@ -29,7 +29,7 @@ const ADS: AdDatum[] = [
   },
   {
     brand: 'BrewCo', av: '#8a6d10', avt: 'B',
-    grad: 'linear-gradient(135deg,#2a1608 0%,#6b3d1c 55%,#2e9e73 100%)',
+    grad: 'linear-gradient(135deg,#2a1608 0%,#6b3d1c 55%,#b8912b 100%)',
     icon: '<svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h13a3 3 0 0 1 0 6h-1M4 8v6a4 4 0 0 0 4 4h4a4 4 0 0 0 4-4V8M4 8V5h13v3"/></svg>',
     prod: 'Cold Brew Maker — Free Shipping', cta: 'Order', roas: '7.4×', ctr: '5.6%',
   },
@@ -198,8 +198,8 @@ export default function MetaAds() {
               <svg className="chart" viewBox="0 0 460 120" preserveAspectRatio="none">
                 <defs>
                   <linearGradient id="goldgrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#2e9e73" stopOpacity="0.22" />
-                    <stop offset="100%" stopColor="#2e9e73" stopOpacity="0" />
+                    <stop offset="0%" stopColor="#b8912b" stopOpacity="0.22" />
+                    <stop offset="100%" stopColor="#b8912b" stopOpacity="0" />
                   </linearGradient>
                 </defs>
                 <line className="gridline" x1="0" y1="30" x2="460" y2="30" />
@@ -219,25 +219,25 @@ export default function MetaAds() {
       </div>
 
       <style jsx global>{`
-        .kw24-meta-ads.sec { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 90px 56px; position: relative; overflow: hidden; --accent-d: #1f7355; --meta-blue: #1877f2; --green: #42b72a; }
+        .kw24-meta-ads.sec { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 90px 56px; position: relative; overflow: hidden; --accent-d: #8a6a1e; --meta-blue: #1877f2; --green: #42b72a; }
         .kw24-meta-ads .meta-inner { position: relative; z-index: 3; width: 100%; max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 48px; align-items: center; }
-        .kw24-meta-ads.sec::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(#101512 1px, transparent 1px), linear-gradient(90deg, #101512 1px, transparent 1px); background-size: 46px 46px; opacity: .5; -webkit-mask-image: radial-gradient(ellipse 90% 80% at 40% 50%, #000 35%, transparent 100%); mask-image: radial-gradient(ellipse 90% 80% at 40% 50%, #000 35%, transparent 100%); z-index: 0; }
+        .kw24-meta-ads.sec::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(#e8e2d2 1px, transparent 1px), linear-gradient(90deg, #e8e2d2 1px, transparent 1px); background-size: 46px 46px; opacity: .5; -webkit-mask-image: radial-gradient(ellipse 90% 80% at 40% 50%, #000 35%, transparent 100%); mask-image: radial-gradient(ellipse 90% 80% at 40% 50%, #000 35%, transparent 100%); z-index: 0; }
 
         .kw24-meta-ads .left { position: relative; z-index: 3; }
-        .kw24-meta-ads .badge { display: inline-flex; align-items: center; gap: 8px; border: 1px solid #222; padding: 6px 14px; border-radius: 100px; font-size: 11px; color: rgba(255,255,255,.42); letter-spacing: .5px; margin-bottom: 26px; }
+        .kw24-meta-ads .badge { display: inline-flex; align-items: center; gap: 8px; border: 1px solid #e4dcc8; padding: 6px 14px; border-radius: 100px; font-size: 11px; color: rgba(26,23,18,.42); letter-spacing: .5px; margin-bottom: 26px; }
         .kw24-meta-ads .badge i { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: metaBlink 1.4s infinite; }
         @keyframes metaBlink { 0%, 100% { opacity: 1; } 50% { opacity: .2; } }
         .kw24-meta-ads h2 { font-family: var(--display); font-size: clamp(32px,3.4vw,52px); font-weight: 800; line-height: 1.04; letter-spacing: -1.6px; margin-bottom: 20px; }
-        .kw24-meta-ads h2 .g { color: var(--ivory); }
-        .kw24-meta-ads .sub { font-size: 16px; font-weight: 300; color: rgba(255,255,255,.42); line-height: 1.7; max-width: 400px; margin-bottom: 30px; }
+        .kw24-meta-ads h2 .g { color: var(--accent); }
+        .kw24-meta-ads .sub { font-size: 16px; font-weight: 300; color: rgba(26,23,18,.55); line-height: 1.7; max-width: 400px; margin-bottom: 30px; }
         .kw24-meta-ads .points { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-bottom: 34px; }
-        .kw24-meta-ads .points li { display: flex; align-items: center; gap: 12px; font-size: 14px; color: rgba(255,255,255,.7); }
-        .kw24-meta-ads .points .tick { width: 20px; height: 20px; border-radius: 50%; background: rgba(46,158,115,.12); border: 1px solid var(--accent); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 11px; flex-shrink: 0; }
+        .kw24-meta-ads .points li { display: flex; align-items: center; gap: 12px; font-size: 14px; color: rgba(26,23,18,.75); }
+        .kw24-meta-ads .points .tick { width: 20px; height: 20px; border-radius: 50%; background: rgba(184,145,43,.12); border: 1px solid var(--accent); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 11px; flex-shrink: 0; }
         .kw24-meta-ads .bp { display: inline-flex; align-items: center; gap: 9px; background: var(--accent); color: #000; font-family: var(--display); font-size: 13px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; padding: 14px 26px; border-radius: 3px; text-decoration: none; transition: opacity .2s; }
         .kw24-meta-ads .bp:hover { opacity: .85; }
 
         .kw24-meta-ads .right { position: relative; z-index: 3; min-width: 0; }
-        .kw24-meta-ads .screen { background: #f0f2f5; border-radius: 12px; overflow: hidden; box-shadow: 0 40px 120px rgba(46,158,115,.12), 0 20px 60px rgba(0,0,0,.6); }
+        .kw24-meta-ads .screen { background: #f0f2f5; border-radius: 12px; overflow: hidden; box-shadow: 0 40px 120px rgba(184,145,43,.12), 0 20px 60px rgba(0,0,0,.6); }
         .kw24-meta-ads .topbar { display: flex; align-items: center; gap: 10px; padding: 11px 16px; background: #fff; border-bottom: 1px solid #dadde1; }
         .kw24-meta-ads .metalogo { display: flex; align-items: center; gap: 8px; font-family: var(--ui); font-weight: 700; font-size: 14px; color: #1c1e21; }
         .kw24-meta-ads .metalogo .m { width: 24px; height: 24px; border-radius: 6px; background: var(--meta-blue); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 14px; }
@@ -272,7 +272,7 @@ export default function MetaAds() {
         .kw24-meta-ads .adcard .ad-av { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--ui); font-weight: 700; font-size: 10px; color: #fff; }
         .kw24-meta-ads .adcard .ad-brand { font-family: var(--ui); font-size: 11px; font-weight: 700; color: #1c1e21; line-height: 1.1; }
         .kw24-meta-ads .adcard .ad-spon { font-family: var(--ui); font-size: 9px; color: #65676b; }
-        .kw24-meta-ads .adcard .ad-img { height: 96px; position: relative; display: flex; align-items: flex-end; overflow: hidden; padding: 10px 12px; border-top: 1px solid rgba(46,158,115,.18); }
+        .kw24-meta-ads .adcard .ad-img { height: 96px; position: relative; display: flex; align-items: flex-end; overflow: hidden; padding: 10px 12px; border-top: 1px solid rgba(184,145,43,.18); }
         .kw24-meta-ads .adcard .ad-img::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 28% 18%, rgba(255,255,255,.22), transparent 55%); }
         .kw24-meta-ads .adcard .ad-img::after { content: ''; position: absolute; inset: 0; box-shadow: inset 0 -34px 30px -14px rgba(0,0,0,.5); }
         .kw24-meta-ads .adcard .ad-icon { position: absolute; top: 10px; right: 10px; z-index: 1; opacity: .85; }
@@ -283,7 +283,7 @@ export default function MetaAds() {
         .kw24-meta-ads .adcard .ad-stats { display: flex; gap: 10px; padding: 7px 9px; font-family: var(--ui); font-size: 9px; color: #65676b; }
         .kw24-meta-ads .adcard .ad-stats b { color: #42b72a; }
 
-        .kw24-meta-ads .roasbadge { position: absolute; top: -54px; right: 24px; z-index: 6; background: #0b1d17; border: 1px solid var(--accent); border-radius: 100px; padding: 8px 18px; display: flex; align-items: center; gap: 10px; box-shadow: 0 0 30px rgba(46,158,115,.3); }
+        .kw24-meta-ads .roasbadge { position: absolute; top: -54px; right: 24px; z-index: 6; background: #1a1712; border: 1px solid var(--accent); border-radius: 100px; padding: 8px 18px; display: flex; align-items: center; gap: 10px; box-shadow: 0 0 30px rgba(184,145,43,.3); }
         .kw24-meta-ads .roasbadge .lbl { font-size: 11px; color: rgba(255,255,255,.42); }
         .kw24-meta-ads .roasbadge .v { font-family: var(--display); font-size: 18px; font-weight: 800; color: var(--accent); min-width: 46px; text-align: center; }
         .kw24-meta-ads .roasbadge .ar { color: #42b72a; font-size: 13px; }

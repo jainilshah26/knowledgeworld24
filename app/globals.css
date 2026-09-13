@@ -1,11 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --black: #0b1d17;
-  --accent: #2e9e73;
-  --accent-d: #1f7355;
-  --ivory: #e8e1d3;
-  --white: #fff;
+  --bg: #f7f3ea;
+  --ink: #1a1712;
+  --card: #ffffff;
+  --card-b: #e4dcc8;
+  --accent: #b8912b;
+  --accent-d: #8a6a1e;
   --ease: cubic-bezier(.6, .01, .05, .95);
   --display: var(--font-heading, 'Fraunces', serif);
   --body: var(--font-body, 'Manrope', sans-serif);
@@ -28,8 +29,8 @@ html {
 }
 
 body {
-  background: #0b1d17;
-  color: #fff;
+  background: var(--bg);
+  color: var(--ink);
   font-family: var(--body);
   overflow-x: hidden;
   max-width: 100%;
