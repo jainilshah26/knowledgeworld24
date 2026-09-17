@@ -12,7 +12,7 @@ export async function POST(request: Request) {
 
   try {
     const { error } = await resend.emails.send({
-      from: 'Knowledge World24 <onboarding@resend.dev>',
+      from: 'Knowledge World24 <noreply@knowledgeworld24.com>',
       to: 'jainilshah345@gmail.com',
       replyTo: email,
       subject: `New enquiry from ${name}${company ? ` (${company})` : ''}`,
@@ -27,11 +27,13 @@ export async function POST(request: Request) {
     })
 
     if (error) {
+      console.error('Resend error (contact):', error)
       return NextResponse.json({ error: 'Failed to send email.' }, { status: 500 })
     }
 
     return NextResponse.json({ success: true })
-  } catch {
+  } catch (err) {
+    console.error('Contact submission failed:', err)
     return NextResponse.json({ error: 'Failed to send email.' }, { status: 500 })
   }
 }
