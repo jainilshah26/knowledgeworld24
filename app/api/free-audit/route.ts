@@ -17,7 +17,7 @@ function escapeHtml(value: string) {
 
 export async function POST(request: Request) {
   const ip = getClientIp(request)
-  if (isRateLimited(ip)) {
+  if (isRateLimited(`free-audit:${ip}`)) {
     return NextResponse.json({ error: 'Too many requests. Please try again later.' }, { status: 429 })
   }
 
