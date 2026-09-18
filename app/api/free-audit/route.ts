@@ -44,6 +44,24 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Failed to send email.' }, { status: 500 })
     }
 
+    // Best-effort confirmation to the submitter — the lead is already
+    // captured above, so a failure here shouldn't fail the request.
+    const { error: confirmError } = await resend.emails.send({
+      from: 'Knowledge World24 <noreply@knowledgeworld24.com>',
+      to: email,
+      replyTo: 'jainilshah345@gmail.com',
+      subject: `We've received your free audit request, ${name.split(' ')[0]}`,
+      html: `
+        <h2>Thanks for reaching out, ${escapeHtml(name.split(' ')[0])}!</h2>
+        <p>We've received your free audit request for <strong>${escapeHtml(businessName)}</strong> and our team will review it shortly.</p>
+        <p>You'll hear back from us within 24 hours with a plan covering SEO, ads, and automation opportunities for your business.</p>
+        <p>— The Knowledge World24 Team</p>
+      `,
+    })
+    if (confirmError) {
+      console.error('Resend confirmation error (free-audit):', confirmError)
+    }
+
     return NextResponse.json({ success: true })
   } catch (err) {
     console.error('Free-audit submission failed:', err)
