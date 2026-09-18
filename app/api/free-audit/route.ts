@@ -1,5 +1,10 @@
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
+import { getClientIp, isRateLimited } from '@/lib/rateLimit'
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+const MAX_SHORT = 200
+const MAX_LONG = 5000
 
 function escapeHtml(value: string) {
   return value
@@ -11,13 +16,45 @@ function escapeHtml(value: string) {
 }
 
 export async function POST(request: Request) {
-  const { name, email, businessName, businessUrl, description } = await request.json()
+  const ip = getClientIp(request)
+  if (isRateLimited(ip)) {
+    return NextResponse.json({ error: 'Too many requests. Please try again later.' }, { status: 429 })
+  }
+
+  const body = await request.json()
+  const { name, email, businessName, businessUrl, description, website } = body
+
+  // Honeypot: a hidden field real visitors never fill in. If it's set,
+  // silently pretend success so the bot doesn't learn to adapt.
+  if (typeof website === 'string' && website.trim() !== '') {
+    return NextResponse.json({ success: true })
+  }
 
   if (!name || !email || !businessName || !businessUrl) {
     return NextResponse.json(
       { error: 'Name, email, business name, and business URL are required.' },
       { status: 400 }
     )
+  }
+
+  if (
+    typeof name !== 'string' || typeof email !== 'string' ||
+    typeof businessName !== 'string' || typeof businessUrl !== 'string' ||
+    (description !== undefined && typeof description !== 'string')
+  ) {
+    return NextResponse.json({ error: 'Invalid submission.' }, { status: 400 })
+  }
+
+  if (!EMAIL_RE.test(email)) {
+    return NextResponse.json({ error: 'Please enter a valid email address.' }, { status: 400 })
+  }
+
+  if (
+    name.length > MAX_SHORT || email.length > MAX_SHORT ||
+    businessName.length > MAX_SHORT || businessUrl.length > MAX_SHORT ||
+    (description && description.length > MAX_LONG)
+  ) {
+    return NextResponse.json({ error: 'One of the fields is too long.' }, { status: 400 })
   }
 
   const resend = new Resend(process.env.RESEND_API_KEY)

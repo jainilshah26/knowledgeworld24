@@ -16,6 +16,7 @@ export default function Contact() {
   const emailRef = useRef<HTMLInputElement>(null)
   const companyRef = useRef<HTMLInputElement>(null)
   const messageRef = useRef<HTMLTextAreaElement>(null)
+  const honeypotRef = useRef<HTMLInputElement>(null)
 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -42,6 +43,7 @@ export default function Contact() {
           email: emailRef.current?.value ?? '',
           company: companyRef.current?.value ?? '',
           message: messageRef.current?.value ?? '',
+          website: honeypotRef.current?.value ?? '',
         }),
       })
       if (!res.ok) throw new Error('Failed to send')
@@ -61,6 +63,15 @@ export default function Contact() {
         <p className="subtext" ref={subRef}>Tell us about your business — we&apos;ll come back with a plan that actually moves the needle.</p>
 
         <form ref={formRef} onSubmit={handleSubmit}>
+          <input
+            ref={honeypotRef}
+            type="text"
+            name="website"
+            className="hp"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+          />
           <div className="row">
             <input ref={nameRef} type="text" placeholder="Your Name" required />
             <input ref={emailRef} type="email" placeholder="Email Address" required />
@@ -102,6 +113,7 @@ export default function Contact() {
         .kw24-contact .subtext.vis { opacity: 1; transform: translateY(0); }
 
         .kw24-contact form { display: flex; flex-direction: column; gap: 12px; text-align: left; opacity: 0; transform: translateY(20px); transition: all .7s var(--ease) .24s; }
+        .kw24-contact .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
         .kw24-contact form.vis { opacity: 1; transform: translateY(0); }
         .kw24-contact .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .kw24-contact input, .kw24-contact textarea { width: 100%; background: var(--card); border: 1px solid var(--card-b); color: #1a1712; font-family: var(--body); font-size: 14px; font-weight: 300; padding: 14px 16px; border-radius: 6px; outline: none; transition: border-color .25s, box-shadow .25s; }

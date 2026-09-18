@@ -13,6 +13,7 @@ export default function FreeAuditForm() {
   const businessNameRef = useRef<HTMLInputElement>(null)
   const businessUrlRef = useRef<HTMLInputElement>(null)
   const descriptionRef = useRef<HTMLTextAreaElement>(null)
+  const honeypotRef = useRef<HTMLInputElement>(null)
 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -31,6 +32,7 @@ export default function FreeAuditForm() {
           businessName: businessNameRef.current?.value ?? '',
           businessUrl: businessUrlRef.current?.value ?? '',
           description: descriptionRef.current?.value ?? '',
+          website: honeypotRef.current?.value ?? '',
         }),
       })
       if (!res.ok) throw new Error('Failed to send')
@@ -51,6 +53,15 @@ export default function FreeAuditForm() {
         <p className="subtext">Tell us about your business and we&apos;ll send back a free audit covering SEO, ads, and automation opportunities.</p>
 
         <form ref={formRef} onSubmit={handleSubmit}>
+          <input
+            ref={honeypotRef}
+            type="text"
+            name="website"
+            className="hp"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+          />
           <div className="row">
             <input ref={nameRef} type="text" placeholder="Your Name" required />
             <input ref={emailRef} type="email" placeholder="Email Address" required />
@@ -83,6 +94,7 @@ export default function FreeAuditForm() {
         .kw24-audit .subtext { font-size: 15px; font-weight: 300; color: rgba(26,23,18,.45); line-height: 1.7; margin-bottom: 40px; max-width: 460px; margin-left: auto; margin-right: auto; }
 
         .kw24-audit form { display: flex; flex-direction: column; gap: 12px; text-align: left; }
+        .kw24-audit .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
         .kw24-audit .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .kw24-audit input, .kw24-audit textarea { width: 100%; background: var(--card); border: 1px solid var(--card-b); color: #1a1712; font-family: var(--body); font-size: 14px; font-weight: 300; padding: 14px 16px; border-radius: 6px; outline: none; transition: border-color .25s, box-shadow .25s; }
         .kw24-audit input::placeholder, .kw24-audit textarea::placeholder { color: rgba(26,23,18,.25); }
