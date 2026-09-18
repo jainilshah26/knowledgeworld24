@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Footer() {
   return (
@@ -36,10 +37,10 @@ export default function Footer() {
         <div className="col">
           <h4>Company</h4>
           <ul>
-            {/* TODO: point these at real /about, /work, /blog, /careers routes once built */}
+            {/* TODO: point these at real /about, /work, /careers routes once built */}
             <li><a href="#">About Us</a></li>
             <li><a href="#">Our Work</a></li>
-            <li><a href="#">Blog</a></li>
+            <li><Link href="/blog">Blog</Link></li>
             <li><a href="#">Careers</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
