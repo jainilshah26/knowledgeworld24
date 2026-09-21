@@ -36,7 +36,13 @@ export default function FreeAuditForm() {
         }),
       })
       if (!res.ok) throw new Error('Failed to send')
-      router.push('/thank-you')
+
+      const params = new URLSearchParams({
+        url: businessUrlRef.current?.value ?? '',
+        business: businessNameRef.current?.value ?? '',
+        name: (nameRef.current?.value ?? '').split(' ')[0],
+      })
+      router.push(`/free-audit/report?${params.toString()}`)
     } catch {
       setError('Something went wrong sending your request. Please try again.')
       setLoading(false)

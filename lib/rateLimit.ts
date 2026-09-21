@@ -5,8 +5,8 @@
 // naive bot floods rather than a hard guarantee — pair it with the honeypot
 // field, and consider a durable store (e.g. Upstash Redis) if abuse persists.
 
-const WINDOW_MS = 10 * 60 * 1000 // 10 minutes
-const MAX_REQUESTS = 5
+const DEFAULT_WINDOW_MS = 10 * 60 * 1000 // 10 minutes
+const DEFAULT_MAX_REQUESTS = 5
 
 const hits = new Map<string, { count: number; resetAt: number }>()
 
@@ -22,16 +22,21 @@ export function getClientIp(request: Request): string {
   return request.headers.get('x-real-ip') || 'unknown'
 }
 
-export function isRateLimited(key: string): boolean {
+export function isRateLimited(
+  key: string,
+  options?: { windowMs?: number; max?: number }
+): boolean {
+  const windowMs = options?.windowMs ?? DEFAULT_WINDOW_MS
+  const max = options?.max ?? DEFAULT_MAX_REQUESTS
   const now = Date.now()
   cleanup(now)
 
   const entry = hits.get(key)
   if (!entry || entry.resetAt <= now) {
-    hits.set(key, { count: 1, resetAt: now + WINDOW_MS })
+    hits.set(key, { count: 1, resetAt: now + windowMs })
     return false
   }
 
   entry.count += 1
-  return entry.count > MAX_REQUESTS
+  return entry.count > max
 }
