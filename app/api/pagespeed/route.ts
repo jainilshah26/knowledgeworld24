@@ -54,7 +54,10 @@ export async function GET(request: Request) {
   const psiUrl = new URL('https://www.googleapis.com/pagespeedonline/v5/runPagespeed')
   psiUrl.searchParams.set('url', targetUrl)
   psiUrl.searchParams.set('key', apiKey)
-  psiUrl.searchParams.set('strategy', 'mobile')
+  // Desktop strategy skips Lighthouse's mobile CPU/network throttling,
+  // which is what pushed audits of heavy, animation-driven pages (like
+  // our own Three.js hero) past the serverless function's time limit.
+  psiUrl.searchParams.set('strategy', 'desktop')
   CATEGORIES.forEach(cat => psiUrl.searchParams.append('category', cat))
 
   try {
@@ -79,7 +82,7 @@ export async function GET(request: Request) {
     return NextResponse.json({
       ok: true,
       finalUrl: data?.lighthouseResult?.finalUrl || targetUrl,
-      strategy: 'mobile',
+      strategy: 'desktop',
       scores: {
         performance: scoreOf(categories, 'performance'),
         seo: scoreOf(categories, 'seo'),

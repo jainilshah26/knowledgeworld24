@@ -114,7 +114,7 @@ export default function ReportClient() {
             <div className="head">
               <div className="badge"><i></i> Audit Complete</div>
               <h1>Here&apos;s how <span className="g">{business}</span> scores.</h1>
-              <p className="sub">Automated results for {result.finalUrl || url} · mobile · powered by Google PageSpeed Insights</p>
+              <p className="sub">Automated results for {result.finalUrl || url} · desktop · powered by Google PageSpeed Insights</p>
             </div>
 
             <div className="scores">
