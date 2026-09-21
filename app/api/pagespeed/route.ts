@@ -82,23 +82,26 @@ export async function GET(request: Request) {
     if (data?.lighthouseResult?.runtimeError?.code) {
       console.error('PageSpeed runtimeError:', data.lighthouseResult.runtimeError)
     }
-    if (audits?.['largest-contentful-paint']?.errorMessage) {
-      console.error('LCP audit error:', audits['largest-contentful-paint'].errorMessage)
+    const lcpError = audits?.['largest-contentful-paint']?.errorMessage
+    if (lcpError) {
+      console.error('LCP audit error:', lcpError)
+    }
+
+    const performanceScore = scoreOf(categories, 'performance')
+    const warnings: string[] = []
+    if (performanceScore === null && lcpError === 'NO_LCP') {
+      warnings.push(
+        "We couldn't fully measure Performance — this usually happens on pages with heavy animation or canvas content that briefly confuses automated speed tools. SEO, Accessibility, and Best Practices are still accurate."
+      )
     }
 
     return NextResponse.json({
       ok: true,
       finalUrl: data?.lighthouseResult?.finalUrl || targetUrl,
       strategy: 'desktop',
-      // TEMP DEBUG — remove before merging
-      _debug: {
-        runtimeError: data?.lighthouseResult?.runtimeError ?? null,
-        lcpAudit: audits?.['largest-contentful-paint'] ?? null,
-        tbtAudit: audits?.['total-blocking-time'] ?? null,
-        perfCategory: categories?.performance ?? null,
-      },
+      warnings,
       scores: {
-        performance: scoreOf(categories, 'performance'),
+        performance: performanceScore,
         seo: scoreOf(categories, 'seo'),
         accessibility: scoreOf(categories, 'accessibility'),
         bestPractices: scoreOf(categories, 'best-practices'),

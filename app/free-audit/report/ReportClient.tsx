@@ -8,6 +8,7 @@ interface PageSpeedResult {
   ok: boolean
   error?: string
   finalUrl?: string
+  warnings?: string[]
   scores?: {
     performance: number | null
     seo: number | null
@@ -128,6 +129,12 @@ export default function ReportClient() {
               ))}
             </div>
 
+            {result.warnings && result.warnings.length > 0 && (
+              <div className="warnings">
+                {result.warnings.map((w, i) => <p key={i}>{w}</p>)}
+              </div>
+            )}
+
             <div className="metrics">
               <div className="metrics-title">Core Web Vitals &amp; Speed Metrics</div>
               <div className="metrics-grid">
@@ -179,6 +186,10 @@ export default function ReportClient() {
         .kw24-report .score-card.poor .ring { --ring-color: #d94f4f; }
         .kw24-report .score-card.na .ring { --ring-color: #ccc; }
         .kw24-report .score-card .label { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: .4px; color: rgba(26,23,18,.5); text-align: center; }
+
+        .kw24-report .warnings { background: #fbf3e6; border: 1px solid #ecd9ae; border-radius: 12px; padding: 18px 22px; margin-bottom: 32px; }
+        .kw24-report .warnings p { font-size: 13.5px; color: rgba(26,23,18,.65); line-height: 1.6; }
+        .kw24-report .warnings p + p { margin-top: 10px; }
 
         .kw24-report .metrics { background: #fff; border: 1px solid #e4dcc8; border-radius: 16px; padding: 32px; margin-bottom: 40px; }
         .kw24-report .metrics-title { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: .5px; color: rgba(26,23,18,.45); margin-bottom: 20px; }
