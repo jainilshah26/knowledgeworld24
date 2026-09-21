@@ -79,10 +79,24 @@ export async function GET(request: Request) {
     const categories = data?.lighthouseResult?.categories
     const audits = data?.lighthouseResult?.audits
 
+    if (data?.lighthouseResult?.runtimeError?.code) {
+      console.error('PageSpeed runtimeError:', data.lighthouseResult.runtimeError)
+    }
+    if (audits?.['largest-contentful-paint']?.errorMessage) {
+      console.error('LCP audit error:', audits['largest-contentful-paint'].errorMessage)
+    }
+
     return NextResponse.json({
       ok: true,
       finalUrl: data?.lighthouseResult?.finalUrl || targetUrl,
       strategy: 'desktop',
+      // TEMP DEBUG — remove before merging
+      _debug: {
+        runtimeError: data?.lighthouseResult?.runtimeError ?? null,
+        lcpAudit: audits?.['largest-contentful-paint'] ?? null,
+        tbtAudit: audits?.['total-blocking-time'] ?? null,
+        perfCategory: categories?.performance ?? null,
+      },
       scores: {
         performance: scoreOf(categories, 'performance'),
         seo: scoreOf(categories, 'seo'),
