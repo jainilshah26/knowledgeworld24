@@ -1,9 +1,10 @@
 import { NextResponse } from 'next/server'
 import { getClientIp, isRateLimited } from '@/lib/rateLimit'
 
-// PageSpeed Insights can take 20-40s for a full mobile audit; give the
-// serverless function room beyond the framework default before it's killed.
-export const maxDuration = 60
+// PageSpeed Insights regularly takes 30-90s on real-world sites. Fluid
+// compute allows up to 300s on Hobby; 120s leaves headroom without letting
+// a stuck request run indefinitely.
+export const maxDuration = 120
 
 const CATEGORIES = ['performance', 'seo', 'accessibility', 'best-practices']
 
@@ -62,7 +63,7 @@ export async function GET(request: Request) {
 
   try {
     const controller = new AbortController()
-    const timeout = setTimeout(() => controller.abort(), 55000)
+    const timeout = setTimeout(() => controller.abort(), 110000)
     const res = await fetch(psiUrl.toString(), { signal: controller.signal })
     clearTimeout(timeout)
 

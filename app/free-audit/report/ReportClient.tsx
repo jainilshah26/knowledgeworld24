@@ -31,6 +31,7 @@ const STATUS_MESSAGES = [
   'Reviewing accessibility…',
   'Checking best practices…',
   'Putting your report together…',
+  'Larger sites can take a minute or two — hang tight…',
 ]
 
 const SCORES: { key: keyof NonNullable<PageSpeedResult['scores']>; label: string }[] = [

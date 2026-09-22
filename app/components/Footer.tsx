@@ -57,7 +57,7 @@ export default function Footer() {
       </div>
 
       <div className="bottom">
-        <div className="copy">© 2025 Knowledge World24. All rights reserved. GIFT City, Gandhinagar.</div>
+        <div className="copy">© {new Date().getFullYear()} Knowledge World24. All rights reserved.</div>
         <div className="legal">
           <a href="#">Privacy Policy</a>
           <a href="#">Terms of Service</a>
