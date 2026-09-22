@@ -101,7 +101,11 @@ const SITE_ADDRESS = {
   streetAddress: 'GIFT City',
 }
 
-// The umbrella company entity — used as publisher/author across the site.
+// Kept as three independent nodes with no @id cross-references between
+// them. A node that another node on the page points to by @id gets treated
+// by most validators as embedded detail rather than its own root item —
+// that's what was hiding Organization earlier. None of these reference
+// each other by @id, so each shows up as its own detected item.
 const organizationJsonLd = {
   '@type': 'Organization',
   '@id': `${SITE_URL}/#organization`,
@@ -117,7 +121,6 @@ const organizationJsonLd = {
   ],
 }
 
-// The physical/local-service entity — powers Google's local pack & maps results.
 const localBusinessJsonLd = {
   '@type': 'LocalBusiness',
   '@id': `${SITE_URL}/#localbusiness`,
@@ -128,7 +131,6 @@ const localBusinessJsonLd = {
   email: 'hello@knowledgeworld24.com',
   address: SITE_ADDRESS,
   areaServed: 'IN',
-  parentOrganization: { '@id': `${SITE_URL}/#organization` },
 }
 
 const websiteJsonLd = {
@@ -137,13 +139,10 @@ const websiteJsonLd = {
   name: SITE_NAME,
   url: SITE_URL,
   description: SITE_DESCRIPTION,
-  publisher: { '@id': `${SITE_URL}/#organization` },
+  publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
   inLanguage: 'en-IN',
 }
 
-// Combined into a single @graph so every validator resolves the @id
-// cross-references (publisher, parentOrganization) between these entities
-// instead of treating each as an isolated, unrelated document.
 const siteJsonLd = {
   '@context': 'https://schema.org',
   '@graph': [organizationJsonLd, localBusinessJsonLd, websiteJsonLd],
