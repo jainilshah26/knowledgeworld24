@@ -47,7 +47,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     image: `${SITE_URL}/logo.png`,
     datePublished: post.date,
     dateModified: post.date,
-    author: { '@id': `${SITE_URL}/#organization` },
+    author: { '@type': 'Person', name: post.author, url: SITE_URL },
     publisher: { '@id': `${SITE_URL}/#organization` },
     mainEntityOfPage: { '@type': 'WebPage', '@id': postUrl },
     articleSection: post.category,

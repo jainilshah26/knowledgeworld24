@@ -3,7 +3,7 @@ title: "Meta Ads vs Google Ads: Where Should Your Budget Go in 2026?"
 date: "2026-08-28"
 excerpt: "Both platforms work — but for different reasons, at different stages of the funnel. Here's how to split spend based on what you're actually trying to achieve."
 category: "Performance Marketing"
-author: "Knowledge World24 Team"
+author: "Jainil Shah"
 ---
 
 "Should I run Meta or Google ads?" is one of the most common questions we get from businesses starting to scale paid acquisition — and the honest answer is that it depends on what you're solving for.

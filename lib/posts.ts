@@ -44,7 +44,7 @@ export function getAllPosts(): PostMeta[] {
       date: data.date as string,
       excerpt: data.excerpt as string,
       category: data.category as string,
-      author: (data.author as string) || 'Knowledge World24 Team',
+      author: (data.author as string) || 'Jainil Shah',
       readTime: readingTime(content).text,
     }
   })
@@ -64,7 +64,7 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
     date: data.date as string,
     excerpt: data.excerpt as string,
     category: data.category as string,
-    author: (data.author as string) || 'Knowledge World24 Team',
+    author: (data.author as string) || 'Jainil Shah',
     readTime: readingTime(content).text,
     contentHtml: processed.toString(),
   }

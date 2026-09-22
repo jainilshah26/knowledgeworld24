@@ -3,7 +3,7 @@ title: "5 Signs Your Website Needs an AI-Powered SEO Audit"
 date: "2026-09-10"
 excerpt: "Traffic looking flat even though you're publishing content? Here are five warning signs it's time for a deeper, AI-driven look at your site's SEO health."
 category: "SEO"
-author: "Knowledge World24 Team"
+author: "Jainil Shah"
 ---
 
 If your organic traffic has plateaued despite regular content updates, the problem usually isn't effort — it's visibility into what's actually broken. Traditional SEO audits catch the obvious stuff (broken links, missing meta tags), but they miss the deeper technical and content-gap issues that AI-driven audits are built to find.

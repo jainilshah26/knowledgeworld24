@@ -3,7 +3,7 @@ title: "How AI Agents Are Changing Lead Generation in 2026"
 date: "2026-09-05"
 excerpt: "Manual prospecting doesn't scale. Here's how autonomous AI agents are handling research, qualification, and outreach — and what that means for your pipeline."
 category: "AI Automation"
-author: "Knowledge World24 Team"
+author: "Jainil Shah"
 ---
 
 For years, "lead generation" meant a person scrolling through LinkedIn, copy-pasting details into a spreadsheet, and sending the same templated email to a hundred strangers. It worked, barely, and it never scaled without hiring more people.
