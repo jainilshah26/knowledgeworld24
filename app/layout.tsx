@@ -121,7 +121,7 @@ const organizationJsonLd = {
 // The physical/local-service entity — powers Google's local pack & maps results.
 const localBusinessJsonLd = {
   '@context': 'https://schema.org',
-  '@type': ['LocalBusiness', 'MarketingAgency'],
+  '@type': 'LocalBusiness',
   '@id': `${SITE_URL}/#localbusiness`,
   name: SITE_NAME,
   url: SITE_URL,
