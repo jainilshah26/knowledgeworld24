@@ -92,9 +92,19 @@ export const viewport: Viewport = {
   colorScheme: 'light',
 }
 
+const SITE_ADDRESS = {
+  '@type': 'PostalAddress',
+  addressLocality: 'Gandhinagar',
+  addressRegion: 'Gujarat',
+  addressCountry: 'IN',
+  // TODO: add streetAddress / postalCode once confirmed
+  streetAddress: 'GIFT City',
+}
+
+// The umbrella company entity — used as publisher/author across the site.
 const organizationJsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'MarketingAgency',
+  '@type': 'Organization',
   '@id': `${SITE_URL}/#organization`,
   name: SITE_NAME,
   url: SITE_URL,
@@ -102,18 +112,25 @@ const organizationJsonLd = {
   image: `${SITE_URL}/logo.png`,
   description: SITE_DESCRIPTION,
   email: 'hello@knowledgeworld24.com',
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Gandhinagar',
-    addressRegion: 'Gujarat',
-    addressCountry: 'IN',
-    // TODO: add streetAddress / postalCode once confirmed
-    streetAddress: 'GIFT City',
-  },
-  areaServed: 'IN',
+  address: SITE_ADDRESS,
   sameAs: [
     // TODO: add real social profile URLs (LinkedIn, Instagram, X, YouTube)
   ],
+}
+
+// The physical/local-service entity — powers Google's local pack & maps results.
+const localBusinessJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': ['LocalBusiness', 'MarketingAgency'],
+  '@id': `${SITE_URL}/#localbusiness`,
+  name: SITE_NAME,
+  url: SITE_URL,
+  image: `${SITE_URL}/logo.png`,
+  description: SITE_DESCRIPTION,
+  email: 'hello@knowledgeworld24.com',
+  address: SITE_ADDRESS,
+  areaServed: 'IN',
+  parentOrganization: { '@id': `${SITE_URL}/#organization` },
 }
 
 const websiteJsonLd = {
@@ -137,6 +154,11 @@ export default function RootLayout({
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
         />
         <script
           type="application/ld+json"

@@ -40,16 +40,19 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
+    '@type': ['Article', 'BlogPosting'],
+    '@id': `${postUrl}#article`,
     headline: post.title,
     description: post.excerpt,
     image: `${SITE_URL}/logo.png`,
     datePublished: post.date,
     dateModified: post.date,
-    author: { '@type': 'Organization', name: post.author, url: SITE_URL },
+    author: { '@id': `${SITE_URL}/#organization` },
     publisher: { '@id': `${SITE_URL}/#organization` },
     mainEntityOfPage: { '@type': 'WebPage', '@id': postUrl },
     articleSection: post.category,
+    inLanguage: 'en-IN',
+    isPartOf: { '@id': `${SITE_URL}/#website` },
     url: postUrl,
   }
 
