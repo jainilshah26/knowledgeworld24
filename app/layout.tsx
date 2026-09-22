@@ -101,9 +101,11 @@ const SITE_ADDRESS = {
   streetAddress: 'GIFT City',
 }
 
-// The umbrella company entity — used as publisher/author across the site.
+// LocalBusiness already extends Organization in schema.org, so the company
+// is one entity typed as both — not two near-duplicate nodes with the same
+// name/url, which validators' entity resolution tends to collapse into one.
 const organizationJsonLd = {
-  '@type': 'Organization',
+  '@type': ['Organization', 'LocalBusiness'],
   '@id': `${SITE_URL}/#organization`,
   name: SITE_NAME,
   url: SITE_URL,
@@ -112,23 +114,10 @@ const organizationJsonLd = {
   description: SITE_DESCRIPTION,
   email: 'hello@knowledgeworld24.com',
   address: SITE_ADDRESS,
+  areaServed: 'IN',
   sameAs: [
     // TODO: add real social profile URLs (LinkedIn, Instagram, X, YouTube)
   ],
-}
-
-// The physical/local-service entity — powers Google's local pack & maps results.
-const localBusinessJsonLd = {
-  '@type': 'LocalBusiness',
-  '@id': `${SITE_URL}/#localbusiness`,
-  name: SITE_NAME,
-  url: SITE_URL,
-  image: `${SITE_URL}/logo.png`,
-  description: SITE_DESCRIPTION,
-  email: 'hello@knowledgeworld24.com',
-  address: SITE_ADDRESS,
-  areaServed: 'IN',
-  parentOrganization: { '@id': `${SITE_URL}/#organization` },
 }
 
 const websiteJsonLd = {
@@ -142,11 +131,11 @@ const websiteJsonLd = {
 }
 
 // Combined into a single @graph so every validator resolves the @id
-// cross-references (publisher, parentOrganization) between these entities
-// instead of treating each as an isolated, unrelated document.
+// cross-reference (publisher) between these entities instead of treating
+// each as an isolated, unrelated document.
 const siteJsonLd = {
   '@context': 'https://schema.org',
-  '@graph': [organizationJsonLd, localBusinessJsonLd, websiteJsonLd],
+  '@graph': [organizationJsonLd, websiteJsonLd],
 }
 
 export default function RootLayout({
