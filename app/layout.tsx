@@ -103,7 +103,6 @@ const SITE_ADDRESS = {
 
 // The umbrella company entity — used as publisher/author across the site.
 const organizationJsonLd = {
-  '@context': 'https://schema.org',
   '@type': 'Organization',
   '@id': `${SITE_URL}/#organization`,
   name: SITE_NAME,
@@ -120,7 +119,6 @@ const organizationJsonLd = {
 
 // The physical/local-service entity — powers Google's local pack & maps results.
 const localBusinessJsonLd = {
-  '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
   '@id': `${SITE_URL}/#localbusiness`,
   name: SITE_NAME,
@@ -134,7 +132,6 @@ const localBusinessJsonLd = {
 }
 
 const websiteJsonLd = {
-  '@context': 'https://schema.org',
   '@type': 'WebSite',
   '@id': `${SITE_URL}/#website`,
   name: SITE_NAME,
@@ -142,6 +139,14 @@ const websiteJsonLd = {
   description: SITE_DESCRIPTION,
   publisher: { '@id': `${SITE_URL}/#organization` },
   inLanguage: 'en-IN',
+}
+
+// Combined into a single @graph so every validator resolves the @id
+// cross-references (publisher, parentOrganization) between these entities
+// instead of treating each as an isolated, unrelated document.
+const siteJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [organizationJsonLd, localBusinessJsonLd, websiteJsonLd],
 }
 
 export default function RootLayout({
@@ -153,17 +158,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteJsonLd) }}
         />
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
