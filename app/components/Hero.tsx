@@ -248,6 +248,7 @@ export default function Hero() {
         .hero::after { content: ''; position: absolute; inset: 0; z-index: 1; background: radial-gradient(ellipse 65% 60% at 50% 45%, transparent 40%, rgba(247,243,234,.62) 100%); pointer-events: none; }
 
         .hero .left { position: relative; z-index: 3; max-width: 720px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .hero .left::before { content: ''; position: absolute; inset: -12% -18%; z-index: -1; background: radial-gradient(ellipse at center, rgba(247,243,234,.92) 35%, rgba(247,243,234,.6) 60%, transparent 78%); pointer-events: none; }
         .hero .reveal { overflow: hidden; display: block; width: fit-content; margin: 0 auto; }
         .hero .reveal > * { display: block; transform: translateY(110%); animation: heroLineUp .9s var(--ease) forwards; }
         @keyframes heroLineUp { to { transform: translateY(0); } }
@@ -256,7 +257,7 @@ export default function Hero() {
         @keyframes heroBlink { 0%, 100% { opacity: 1; } 50% { opacity: .2; } }
         @keyframes heroFade { to { opacity: 1; } }
         .hero h1 { font-family: var(--display); font-size: clamp(38px,4.4vw,64px); font-weight: 800; line-height: 1.06; letter-spacing: -1.8px; margin-bottom: 8px; }
-        .hero h1 .c { color: var(--accent); }
+        .hero h1 .c { color: #96701a; }
         .hero h1 .reveal > span { animation-delay: .35s; }
         .hero h1 .reveal:nth-child(2) > span { animation-delay: .45s; }
         .hero h1 .reveal:nth-child(3) > span { animation-delay: .55s; }
