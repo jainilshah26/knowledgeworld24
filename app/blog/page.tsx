@@ -12,11 +12,47 @@ export const metadata: Metadata = {
   },
 }
 
+const SITE_URL = 'https://knowledgeworld24.com'
+
 export default function BlogPage() {
   const posts = getAllPosts()
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    name: 'Knowledge World24 Blog',
+    url: `${SITE_URL}/blog`,
+    description: 'Insights on SEO, performance marketing, and AI automation from the Knowledge World24 team.',
+    publisher: { '@id': `${SITE_URL}/#organization` },
+    blogPost: posts.map(post => ({
+      '@type': 'BlogPosting',
+      headline: post.title,
+      url: `${SITE_URL}/blog/${post.slug}`,
+      datePublished: post.date,
+    })),
+  }
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE_URL}/blog` },
+    ],
+  }
+
   return (
     <main className="flex flex-col min-h-screen">
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <Navbar />
       <section className="kw24-blog sec">
         <div className="head">
