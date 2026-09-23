@@ -78,13 +78,42 @@ export default function ReportClient() {
     if (fetched.current) return
     fetched.current = true
 
-    fetch(`/api/pagespeed?url=${encodeURIComponent(url)}`)
-      .then(res => res.json())
-      .then((data: PageSpeedResult) => {
-        setResult(data)
-        setStatus(data.ok ? 'done' : 'failed')
-      })
-      .catch(() => setStatus('failed'))
+    async function run() {
+      try {
+        const res = await fetch(`/api/pagespeed?url=${encodeURIComponent(url)}`)
+        const reader = res.body?.getReader()
+        if (!reader) throw new Error('No response body')
+
+        const decoder = new TextDecoder()
+        let buffer = ''
+
+        for (;;) {
+          const { value, done } = await reader.read()
+          if (done) break
+          buffer += decoder.decode(value, { stream: true })
+
+          let newlineIdx = buffer.indexOf('\n')
+          while (newlineIdx !== -1) {
+            const line = buffer.slice(0, newlineIdx).trim()
+            buffer = buffer.slice(newlineIdx + 1)
+            newlineIdx = buffer.indexOf('\n')
+            if (!line) continue
+
+            const msg = JSON.parse(line)
+            if (msg.type === 'result') {
+              const data: PageSpeedResult = msg
+              setResult(data)
+              setStatus(data.ok ? 'done' : 'failed')
+            }
+            // 'ping' messages just keep the connection alive — nothing to do.
+          }
+        }
+      } catch {
+        setStatus('failed')
+      }
+    }
+
+    run()
   }, [url])
 
   return (

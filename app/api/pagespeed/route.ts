@@ -32,26 +32,7 @@ function metricOf(audits: Record<string, { displayValue?: string; numericValue?:
   return { displayValue: audit.displayValue ?? null, numericValue: audit.numericValue ?? null }
 }
 
-export async function GET(request: Request) {
-  const ip = getClientIp(request)
-  if (isRateLimited(`pagespeed:${ip}`, { max: 12, windowMs: 10 * 60 * 1000 })) {
-    return NextResponse.json({ ok: false, error: 'Too many requests. Please try again later.' }, { status: 429 })
-  }
-
-  const { searchParams } = new URL(request.url)
-  const rawUrl = searchParams.get('url') || ''
-  const targetUrl = normalizeUrl(rawUrl)
-
-  if (!targetUrl) {
-    return NextResponse.json({ ok: false, error: 'Please provide a valid URL.' }, { status: 400 })
-  }
-
-  const apiKey = process.env.PAGESPEED_API_KEY
-  if (!apiKey) {
-    console.error('PAGESPEED_API_KEY is not set')
-    return NextResponse.json({ ok: false, error: 'Audit tool is not configured yet.' }, { status: 500 })
-  }
-
+async function runPageSpeed(targetUrl: string, apiKey: string) {
   const psiUrl = new URL('https://www.googleapis.com/pagespeedonline/v5/runPagespeed')
   psiUrl.searchParams.set('url', targetUrl)
   psiUrl.searchParams.set('key', apiKey)
@@ -70,10 +51,7 @@ export async function GET(request: Request) {
     if (!res.ok) {
       const body = await res.text()
       console.error('PageSpeed API error:', res.status, body)
-      return NextResponse.json(
-        { ok: false, error: "We couldn't automatically analyze this URL right now." },
-        { status: 502 }
-      )
+      return { ok: false, error: "We couldn't automatically analyze this URL right now." }
     }
 
     const data = await res.json()
@@ -96,7 +74,7 @@ export async function GET(request: Request) {
       )
     }
 
-    return NextResponse.json({
+    return {
       ok: true,
       finalUrl: data?.lighthouseResult?.finalUrl || targetUrl,
       strategy: 'desktop',
@@ -114,12 +92,59 @@ export async function GET(request: Request) {
         tbt: metricOf(audits, 'total-blocking-time'),
         speedIndex: metricOf(audits, 'speed-index'),
       },
-    })
+    }
   } catch (err) {
     console.error('PageSpeed fetch failed:', err)
-    return NextResponse.json(
-      { ok: false, error: "We couldn't automatically analyze this URL right now." },
-      { status: 502 }
-    )
+    return { ok: false, error: "We couldn't automatically analyze this URL right now." }
   }
+}
+
+export async function GET(request: Request) {
+  const ip = getClientIp(request)
+  if (isRateLimited(`pagespeed:${ip}`, { max: 12, windowMs: 10 * 60 * 1000 })) {
+    return NextResponse.json({ ok: false, error: 'Too many requests. Please try again later.' }, { status: 429 })
+  }
+
+  const { searchParams } = new URL(request.url)
+  const rawUrl = searchParams.get('url') || ''
+  const targetUrl = normalizeUrl(rawUrl)
+
+  if (!targetUrl) {
+    return NextResponse.json({ ok: false, error: 'Please provide a valid URL.' }, { status: 400 })
+  }
+
+  const apiKey = process.env.PAGESPEED_API_KEY
+  if (!apiKey) {
+    console.error('PAGESPEED_API_KEY is not set')
+    return NextResponse.json({ ok: false, error: 'Audit tool is not configured yet.' }, { status: 500 })
+  }
+
+  // The PSI request itself can take 30-90s. A single request/response that
+  // stays completely silent for that long looks idle to mobile carrier
+  // proxies and in-app browsers, which then drop the connection before we
+  // ever get to respond — the client sees a generic failure. Streaming
+  // newline-delimited JSON with periodic pings keeps the connection alive
+  // end-to-end so the real result reaches the client.
+  const encoder = new TextEncoder()
+  const stream = new ReadableStream({
+    async start(controller) {
+      const ping = setInterval(() => {
+        controller.enqueue(encoder.encode(`${JSON.stringify({ type: 'ping' })}\n`))
+      }, 10000)
+
+      const result = await runPageSpeed(targetUrl, apiKey)
+
+      clearInterval(ping)
+      controller.enqueue(encoder.encode(`${JSON.stringify({ type: 'result', ...result })}\n`))
+      controller.close()
+    },
+  })
+
+  return new Response(stream, {
+    headers: {
+      'Content-Type': 'application/x-ndjson; charset=utf-8',
+      'Cache-Control': 'no-cache, no-transform',
+      'X-Accel-Buffering': 'no',
+    },
+  })
 }
