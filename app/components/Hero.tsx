@@ -249,7 +249,7 @@ export default function Hero() {
 
         .hero .left { position: relative; z-index: 3; max-width: 720px; display: flex; flex-direction: column; align-items: center; text-align: center; }
         .hero .left::before { content: ''; position: absolute; inset: -12% -18%; z-index: -1; background: radial-gradient(ellipse at center, rgba(247,243,234,.92) 35%, rgba(247,243,234,.6) 60%, transparent 78%); pointer-events: none; }
-        .hero .reveal { overflow: hidden; display: block; width: fit-content; margin: 0 auto; }
+        .hero .reveal { overflow: hidden; display: block; width: fit-content; padding: 8px 0; margin: -8px auto; }
         .hero .reveal > * { display: block; transform: translateY(110%); animation: heroLineUp .9s var(--ease) forwards; }
         @keyframes heroLineUp { to { transform: translateY(0); } }
         .hero .badge { display: inline-flex; align-items: center; gap: 9px; border: 1px solid rgba(184,145,43,.3); background: rgba(255,255,255,.6); padding: 7px 16px; border-radius: 100px; font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(26,23,18,.5); margin-bottom: 30px; opacity: 0; animation: heroFade .8s ease .2s forwards; }
