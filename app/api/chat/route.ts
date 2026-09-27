@@ -67,11 +67,25 @@ export async function POST(request: Request) {
   }))
 
   try {
-    const geminiStream = await ai.models.generateContentStream({
-      model: 'gemini-flash-latest',
-      contents,
-      config: { systemInstruction: SYSTEM_INSTRUCTION },
-    })
+    // Gemini occasionally returns a transient 503 "model overloaded" error.
+    // Retry a couple of times with a short backoff before giving up — this
+    // happens before any streaming starts, so it's safe to retry whole.
+    let geminiStream
+    const retryDelaysMs = [500, 1500]
+    for (let attempt = 0; ; attempt++) {
+      try {
+        geminiStream = await ai.models.generateContentStream({
+          model: 'gemini-flash-latest',
+          contents,
+          config: { systemInstruction: SYSTEM_INSTRUCTION },
+        })
+        break
+      } catch (err) {
+        const status = (err as { status?: number })?.status
+        if (status !== 503 || attempt >= retryDelaysMs.length) throw err
+        await new Promise(resolve => setTimeout(resolve, retryDelaysMs[attempt]))
+      }
+    }
 
     const encoder = new TextEncoder()
     const stream = new ReadableStream({
