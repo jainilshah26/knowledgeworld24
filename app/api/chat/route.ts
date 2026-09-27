@@ -68,10 +68,12 @@ export async function POST(request: Request) {
 
   try {
     // Gemini occasionally returns a transient 503 "model overloaded" error.
-    // Retry a couple of times with a short backoff before giving up — this
-    // happens before any streaming starts, so it's safe to retry whole.
+    // Observed live: an overload window can last 30-40s across several
+    // requests, so retry with real backoff rather than a token attempt —
+    // this happens before any streaming starts, so it's safe to retry whole,
+    // and maxDuration (60s) leaves plenty of room.
     let geminiStream
-    const retryDelaysMs = [500, 1500]
+    const retryDelaysMs = [1000, 3000, 8000, 15000]
     for (let attempt = 0; ; attempt++) {
       try {
         geminiStream = await ai.models.generateContentStream({
