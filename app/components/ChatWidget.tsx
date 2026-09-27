@@ -41,29 +41,16 @@ export default function ChatWidget() {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: history.slice(-20) }),
+        body: JSON.stringify({ text }),
       })
+      const data = await res.json().catch(() => null)
 
-      if (!res.ok || !res.body) {
-        const data = await res.json().catch(() => null)
+      if (!res.ok || !data?.ok) {
         setMessages(m => [...m, { role: 'assistant', text: data?.error || "Sorry, I couldn't respond right now." }])
         return
       }
 
-      setMessages(m => [...m, { role: 'assistant', text: '' }])
-      const reader = res.body.getReader()
-      const decoder = new TextDecoder()
-
-      for (;;) {
-        const { value, done } = await reader.read()
-        if (done) break
-        const chunk = decoder.decode(value, { stream: true })
-        setMessages(m => {
-          const next = [...m]
-          next[next.length - 1] = { role: 'assistant', text: next[next.length - 1].text + chunk }
-          return next
-        })
-      }
+      setMessages(m => [...m, { role: 'assistant', text: data.text }])
     } catch {
       setMessages(m => [...m, { role: 'assistant', text: "Sorry, I couldn't respond right now. Please try again." }])
     } finally {
@@ -92,10 +79,9 @@ export default function ChatWidget() {
 
           <div className="body" ref={bodyRef}>
             {messages.map((m, i) => (
-              <div key={i} className={`bubble ${m.role}`}>
-                {m.text || (loading && i === messages.length - 1 ? '…' : '')}
-              </div>
+              <div key={i} className={`bubble ${m.role}`}>{m.text}</div>
             ))}
+            {loading && <div className="bubble assistant typing">…</div>}
           </div>
 
           <div className="composer">

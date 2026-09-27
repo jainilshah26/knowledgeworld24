@@ -19,7 +19,10 @@ Set these in `.env.local` for local development (and in your hosting provider's 
 
 - `RESEND_API_KEY` — used by the contact form (`app/api/contact/route.ts`) and free audit form (`app/api/free-audit/route.ts`) to send email via [Resend](https://resend.com).
 - `PAGESPEED_API_KEY` — a Google Cloud API key with the PageSpeed Insights API enabled, used by `app/api/pagespeed/route.ts` to power the automated report shown after someone submits the free audit form.
-- `GEMINI_API_KEY` — a Gemini API key from [Google AI Studio](https://aistudio.google.com/apikey), used by `app/api/chat/route.ts` to power the site chat widget (`app/components/ChatWidget.tsx`).
+
+## Chat widget
+
+The site chat widget (`app/components/ChatWidget.tsx`, `app/api/chat/route.ts`) answers from `content/chatbot-knowledge.md` via plain keyword matching — no AI model, no API key, no external calls, so it's instant and free. To teach it something new, add a `## Question` entry to that file (see the format notes at the top of the file) — no deploy-time build step needed beyond the normal one.
 
 ## Blog
 
