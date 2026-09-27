@@ -3,6 +3,7 @@ import Script from 'next/script'
 import { Fraunces, Manrope, JetBrains_Mono, Arimo } from 'next/font/google'
 import './globals.css'
 import StyledJsxRegistry from './registry'
+import ChatWidget from './components/ChatWidget'
 
 const GA_MEASUREMENT_ID = 'G-00HBKQRYK5'
 
@@ -171,7 +172,10 @@ export default function RootLayout({
             gtag('config', '${GA_MEASUREMENT_ID}');
           `}
         </Script>
-        <StyledJsxRegistry>{children}</StyledJsxRegistry>
+        <StyledJsxRegistry>
+          {children}
+          <ChatWidget />
+        </StyledJsxRegistry>
       </body>
     </html>
   )
