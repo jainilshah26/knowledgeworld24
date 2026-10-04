@@ -93,14 +93,17 @@ export default function Navbar() {
           gap: 32px;
           list-style: none;
         }
-        .nav-links a {
+        /* :global, not scoped — next/link's rendered <a> (the Blog link)
+           doesn't receive styled-jsx's scope class like a plain <a> does,
+           so a scoped selector here would silently miss it. */
+        :global(.nav-links a) {
           font-size: 13px;
           color: rgba(26, 23, 18, .42);
           text-decoration: none;
           transition: color .2s;
           position: relative;
         }
-        .nav-links a::after {
+        :global(.nav-links a::after) {
           content: '';
           position: absolute;
           left: 0;
@@ -110,8 +113,8 @@ export default function Navbar() {
           background: var(--accent);
           transition: width .3s var(--ease);
         }
-        .nav-links a:hover { color: #1a1712; }
-        .nav-links a:hover::after { width: 100%; }
+        :global(.nav-links a:hover) { color: #1a1712; }
+        :global(.nav-links a:hover::after) { width: 100%; }
         .nav-btn {
           font-family: var(--display);
           font-size: 12px;
@@ -180,7 +183,7 @@ export default function Navbar() {
           z-index: 99;
         }
         .mobile-menu.open { transform: translateX(0); }
-        .mobile-menu a {
+        :global(.mobile-menu a) {
           font-size: 15px;
           color: rgba(26,23,18,.7);
           text-decoration: none;
@@ -188,8 +191,8 @@ export default function Navbar() {
           border-bottom: 1px solid #e4dcc8;
           transition: color .2s;
         }
-        .mobile-menu a:hover { color: var(--accent); }
-        .mobile-menu a.nav-btn {
+        :global(.mobile-menu a:hover) { color: var(--accent); }
+        :global(.mobile-menu a.nav-btn) {
           margin-top: 20px;
           text-align: center;
           border-bottom: none;
