@@ -9,6 +9,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
@@ -24,6 +25,7 @@ export default function Navbar() {
           <li><a href="#services">Services</a></li>
           <li><a href="#ai-automation">AI Automation</a></li>
           <li><a href="#performance-marketing">Ads</a></li>
+          <li><Link href="/blog">Blog</Link></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
         <a href="/free-audit" className="nav-btn" data-magnet>Free Audit</a>
@@ -44,6 +46,7 @@ export default function Navbar() {
         <a href="#services" onClick={() => setOpen(false)}>Services</a>
         <a href="#ai-automation" onClick={() => setOpen(false)}>AI Automation</a>
         <a href="#performance-marketing" onClick={() => setOpen(false)}>Ads</a>
+        <Link href="/blog" onClick={() => setOpen(false)}>Blog</Link>
         <a href="#contact" onClick={() => setOpen(false)}>Contact</a>
         <a href="/free-audit" className="nav-btn" onClick={() => setOpen(false)}>Free Audit</a>
       </div>
