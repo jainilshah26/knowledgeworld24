@@ -28,6 +28,10 @@ The site chat widget (`app/components/ChatWidget.tsx`, `app/api/chat/route.ts`) 
 
 Blog posts are plain Markdown files with frontmatter under `content/blog/`. To publish a new post, add a `.md` file there (see existing posts for the expected frontmatter fields) and deploy — no CMS or database involved.
 
+## Fast indexing
+
+After publishing or updating a post, run `npm run indexnow` to notify Bing, Yandex, and other IndexNow-participating engines immediately instead of waiting for their next crawl. Google does not support IndexNow — for Google specifically, use Search Console's URL Inspection tool → "Request Indexing" on the live URL, which requires logging into the verified property manually. The sitemap (`app/sitemap.ts`) already includes every post with its `lastModified` date either way, which is what both engines read on their own crawl schedule.
+
 ## Deployment
 
 Deployed via Vercel, connected to this repository's `main` branch.
