@@ -149,6 +149,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         .kw24-post .prose h2 { font-family: var(--display); font-size: 26px; font-weight: 700; letter-spacing: -.4px; color: #1a1712; margin: 44px 0 16px; }
         .kw24-post .prose h3 { font-family: var(--display); font-size: 20px; font-weight: 700; color: #1a1712; margin: 32px 0 12px; }
         .kw24-post .prose p { margin-bottom: 20px; }
+        .kw24-post .prose img { width: 100%; height: auto; border-radius: 12px; border: 1px solid #e4dcc8; margin: 8px 0 28px; display: block; }
         .kw24-post .prose ul, .kw24-post .prose ol { margin: 0 0 20px 22px; }
         .kw24-post .prose li { margin-bottom: 8px; }
         .kw24-post .prose a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }

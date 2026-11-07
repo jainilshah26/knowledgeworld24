@@ -47,6 +47,8 @@ The interface carries the heading:
 
 > "Claim your business in ChatGPT."
 
+![Screenshot of OpenAI's unreleased "Claim your business in ChatGPT" beta interface, showing three panels for tracking business visibility, managing product information, and enabling a business agent to answer customer questions](/blog/chatgpt-claim-your-business-screenshot.png)
+
 The screenshot also displays an "unreleased/beta" label, suggesting that the feature is still being developed.
 
 According to the screenshot and subsequent industry reporting, OpenAI appears to be working on a business platform that could help companies manage their presence and understand how they appear in ChatGPT conversations.
