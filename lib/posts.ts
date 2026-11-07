@@ -2,23 +2,32 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { remark } from 'remark'
+import remarkGfm from 'remark-gfm'
 import html from 'remark-html'
 import readingTime from 'reading-time'
 
 const POSTS_DIR = path.join(process.cwd(), 'content/blog')
 
+export interface Faq {
+  question: string
+  answer: string
+}
+
 export interface PostMeta {
   slug: string
   title: string
+  metaTitle: string
   date: string
   excerpt: string
   category: string
   author: string
+  image?: string
   readTime: string
 }
 
 export interface Post extends PostMeta {
   contentHtml: string
+  faqs?: Faq[]
 }
 
 function getSlugs(): string[] {
@@ -41,10 +50,12 @@ export function getAllPosts(): PostMeta[] {
     return {
       slug,
       title: data.title as string,
+      metaTitle: (data.metaTitle as string) || (data.title as string),
       date: data.date as string,
       excerpt: data.excerpt as string,
       category: data.category as string,
       author: (data.author as string) || 'Jainil Shah',
+      image: data.image as string | undefined,
       readTime: readingTime(content).text,
     }
   })
@@ -56,17 +67,20 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
   if (!fs.existsSync(fullPath)) return null
 
   const { data, content } = readPostFile(slug)
-  const processed = await remark().use(html).process(content)
+  const processed = await remark().use(remarkGfm).use(html).process(content)
 
   return {
     slug,
     title: data.title as string,
+    metaTitle: (data.metaTitle as string) || (data.title as string),
     date: data.date as string,
     excerpt: data.excerpt as string,
     category: data.category as string,
     author: (data.author as string) || 'Jainil Shah',
+    image: data.image as string | undefined,
     readTime: readingTime(content).text,
     contentHtml: processed.toString(),
+    faqs: data.faqs as Faq[] | undefined,
   }
 }
 
