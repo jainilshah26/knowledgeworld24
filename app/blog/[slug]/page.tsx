@@ -1,9 +1,12 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import Navbar from '@/app/components/Navbar'
 import Footer from '@/app/components/Footer'
 import { getAllSlugs, getPostBySlug } from '@/lib/posts'
+
+const SITE_URL = 'https://knowledgeworld24.com'
 
 export async function generateStaticParams() {
   return getAllSlugs().map(slug => ({ slug }))
@@ -14,22 +17,29 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const post = await getPostBySlug(slug)
   if (!post) return {}
 
+  const imageUrl = post.image ? `${SITE_URL}${post.image}` : undefined
+
   return {
-    title: post.title,
+    title: post.metaTitle,
     description: post.excerpt,
     alternates: {
       canonical: `/blog/${post.slug}`,
     },
     openGraph: {
       type: 'article',
-      title: post.title,
+      title: post.metaTitle,
       description: post.excerpt,
       publishedTime: post.date,
+      images: imageUrl ? [{ url: imageUrl, width: 1200, height: 630, alt: post.title }] : undefined,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.metaTitle,
+      description: post.excerpt,
+      images: imageUrl ? [imageUrl] : undefined,
     },
   }
 }
-
-const SITE_URL = 'https://knowledgeworld24.com'
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
@@ -37,6 +47,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   if (!post) notFound()
 
   const postUrl = `${SITE_URL}/blog/${post.slug}`
+  const imageUrl = post.image ? `${SITE_URL}${post.image}` : `${SITE_URL}/logo.png`
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -44,7 +55,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     '@id': `${postUrl}#article`,
     headline: post.title,
     description: post.excerpt,
-    image: `${SITE_URL}/logo.png`,
+    image: imageUrl,
     datePublished: post.date,
     dateModified: post.date,
     author: { '@type': 'Person', name: post.author, url: SITE_URL },
@@ -66,6 +77,19 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     ],
   }
 
+  // FAQPage structured data — the single highest-leverage markup for AEO:
+  // it's the shape answer engines (and Google's own FAQ rich results) pull
+  // Q&A pairs from directly, so only emit it when a post actually has FAQs.
+  const faqJsonLd = post.faqs && post.faqs.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: post.faqs.map(faq => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+    })),
+  } : null
+
   return (
     <main className="flex flex-col min-h-screen">
       <script
@@ -78,6 +102,13 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      )}
       <Navbar />
       <article className="kw24-post sec">
         <div className="wrap">
@@ -91,6 +122,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <span className="dot">·</span>
             <span>{post.readTime}</span>
           </div>
+
+          {post.image && (
+            <Image src={post.image} alt={post.title} width={1200} height={630} priority className="banner" />
+          )}
 
           <div className="prose" dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
         </div>
@@ -108,6 +143,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         .kw24-post h1 { font-family: var(--display); font-size: clamp(28px,4.5vw,46px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.15; margin-bottom: 18px; }
         .kw24-post .meta { font-family: var(--mono); font-size: 12px; color: rgba(26,23,18,.45); display: flex; align-items: center; gap: 8px; margin-bottom: 44px; padding-bottom: 32px; border-bottom: 1px solid #e4dcc8; }
         .kw24-post .dot { opacity: .5; }
+        .kw24-post .banner { width: 100%; height: auto; border-radius: 14px; border: 1px solid #e4dcc8; margin-bottom: 40px; display: block; }
 
         .kw24-post .prose { font-size: 16.5px; line-height: 1.85; color: rgba(26,23,18,.85); font-weight: 300; }
         .kw24-post .prose h2 { font-family: var(--display); font-size: 26px; font-weight: 700; letter-spacing: -.4px; color: #1a1712; margin: 44px 0 16px; }

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import Navbar from '@/app/components/Navbar'
 import Footer from '@/app/components/Footer'
@@ -29,6 +30,7 @@ export default function BlogPage() {
       headline: post.title,
       url: `${SITE_URL}/blog/${post.slug}`,
       datePublished: post.date,
+      image: post.image ? `${SITE_URL}${post.image}` : undefined,
     })),
   }
 
@@ -65,13 +67,20 @@ export default function BlogPage() {
           {posts.length === 0 && <p className="empty">No posts yet — check back soon.</p>}
           {posts.map(post => (
             <Link key={post.slug} href={`/blog/${post.slug}`} className="card">
-              <div className="cat">{post.category}</div>
-              <h2>{post.title}</h2>
-              <p className="excerpt">{post.excerpt}</p>
-              <div className="meta">
-                <span>{new Date(post.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
-                <span className="dot">·</span>
-                <span>{post.readTime}</span>
+              {post.image && (
+                <div className="thumb">
+                  <Image src={post.image} alt={post.title} width={600} height={315} />
+                </div>
+              )}
+              <div className="card-body">
+                <div className="cat">{post.category}</div>
+                <h2>{post.title}</h2>
+                <p className="excerpt">{post.excerpt}</p>
+                <div className="meta">
+                  <span>{new Date(post.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
+                  <span className="dot">·</span>
+                  <span>{post.readTime}</span>
+                </div>
               </div>
             </Link>
           ))}
@@ -93,8 +102,11 @@ export default function BlogPage() {
 
         .kw24-blog .grid { position: relative; z-index: 2; max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
         .kw24-blog .empty { grid-column: 1 / -1; text-align: center; color: rgba(26,23,18,.4); font-size: 14px; }
-        .kw24-blog .card { display: flex; flex-direction: column; background: #fff; border: 1px solid #e4dcc8; border-radius: 16px; padding: 28px; text-decoration: none; transition: border-color .25s, transform .25s; }
+        .kw24-blog .card { display: flex; flex-direction: column; background: #fff; border: 1px solid #e4dcc8; border-radius: 16px; overflow: hidden; text-decoration: none; transition: border-color .25s, transform .25s; }
         .kw24-blog .card:hover { border-color: rgba(184,145,43,.5); transform: translateY(-3px); }
+        .kw24-blog .thumb { position: relative; width: 100%; aspect-ratio: 1200 / 630; background: var(--bg); }
+        .kw24-blog .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .kw24-blog .card-body { display: flex; flex-direction: column; flex: 1; padding: 28px; }
         .kw24-blog .cat { display: inline-flex; align-self: flex-start; font-family: var(--mono); font-size: 10px; letter-spacing: .5px; text-transform: uppercase; color: var(--accent); background: rgba(184,145,43,.1); border-radius: 100px; padding: 5px 12px; margin-bottom: 16px; }
         .kw24-blog .card h2 { font-family: var(--display); font-size: 19px; font-weight: 700; letter-spacing: -.2px; line-height: 1.3; color: #1a1712; margin-bottom: 10px; }
         .kw24-blog .excerpt { font-size: 13.5px; color: rgba(26,23,18,.55); line-height: 1.7; font-weight: 300; margin-bottom: 20px; flex: 1; }
