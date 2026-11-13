@@ -69,7 +69,13 @@ export default function BlogPage() {
             <Link key={post.slug} href={`/blog/${post.slug}`} className="card">
               {post.image && (
                 <div className="thumb">
-                  <Image src={post.image} alt={post.title} width={600} height={315} />
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    width={600}
+                    height={315}
+                    sizes="(min-width: 980px) 370px, (min-width: 640px) 45vw, 100vw"
+                  />
                 </div>
               )}
               <div className="card-body">
