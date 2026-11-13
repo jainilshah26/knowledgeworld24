@@ -124,7 +124,15 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </div>
 
           {post.image && (
-            <Image src={post.image} alt={post.title} width={1200} height={630} priority className="banner" />
+            <Image
+              src={post.image}
+              alt={post.title}
+              width={1200}
+              height={630}
+              priority
+              className="banner"
+              sizes="(min-width: 760px) 720px, 100vw"
+            />
           )}
 
           <div className="prose" dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
